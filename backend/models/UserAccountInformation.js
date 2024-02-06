@@ -75,14 +75,9 @@ const userAccountInformationSchema = new mongoose.Schema({
     trim: true,
     text: true,
   },
-  profilePicture: {
-    type: String,
-    trim: true,
-    default: "",
-  },
   gender: {
     type: String,
-    required: [true, "Password is required"],
+    required: [true, "Gender is required"],
     enum: ["male", "female", "other"],
   },
   yearOfBirth: {
@@ -118,4 +113,4 @@ const UserAccountInformation = mongoose.model(
 );
 
 // Export the model for use in other parts of the application
-module.exports = UserAccountInformation;
+export default UserAccountInformation;

@@ -1,7 +1,109 @@
 import mongoose from "mongoose";
-import UserAccountInformation from "./UserAccountInformation";
 
-const { ObjectId } = mongoose.Schema;
+// const { ObjectId } = mongoose.Schema;
+
+// Define the UserAccountInformationSchema
+const userAccountInformationSchema = new mongoose.Schema({
+  nickName: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  bio: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  jobRole: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  workplace: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  education: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  college: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  school: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  homeTown: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  currentCity: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  relationshipStatus: {
+    type: String,
+    trim: true,
+    text: true,
+    enum: [
+      "Single",
+      "In a relationship",
+      "Engaged",
+      "Married",
+      "Divorced",
+      "Separated",
+      "Widowed",
+      "Open relationship",
+      "It's complicated",
+      "Not specified",
+      "Dating",
+      "Exclusive",
+      "Searching",
+      "Taking a break",
+    ],
+  },
+  mobileNumber: {
+    type: String,
+    trim: true,
+    text: true,
+  },
+  gender: {
+    type: String,
+    required: [true, "Gender is required"],
+    enum: ["male", "female", "other"],
+  },
+  yearOfBirth: {
+    type: Number,
+    required: true,
+    trim: true,
+  },
+  monthOfBirth: {
+    type: Number,
+    required: true,
+    trim: true,
+  },
+  dateOfBirth: {
+    type: Number,
+    required: true,
+    trim: true,
+  },
+  friends: {
+    type: Array,
+    default: [],
+  },
+  friendRequests: {
+    type: Array,
+    default: [],
+  },
+});
 
 // Define the userAccountSchema
 const userAccountSchema = new mongoose.Schema({
@@ -23,6 +125,11 @@ const userAccountSchema = new mongoose.Schema({
     unique: true,
     trim: true,
     text: true,
+  },
+  profilePicture: {
+    type: String,
+    trim: true,
+    default: "",
   },
   emailAddress: {
     type: String,
@@ -52,14 +159,11 @@ const userAccountSchema = new mongoose.Schema({
     enum: ["admin", "user"],
     default: "user",
   },
-  userInformation: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "UserAccountInformation",
-  },
+  userInformation: userAccountInformationSchema,
 });
 
 // Create a UserAccount model using the schema
 const UserAccount = mongoose.model("UserAccount", userAccountSchema);
 
 // Export the model for use in other parts of the application
-module.exports = UserAccount;
+export default UserAccount;
