@@ -1,6 +1,5 @@
 .header{
-  margin-bottom: 100px;
-  height: 100px;
+  margin-bottom: 200px;
 }
 
 .navbar{
@@ -20,6 +19,9 @@
   width: 30px;
 }
 
+.search-container{
+  margin: 20px;
+}
 li {
   justify-content: center;
   align-items: center;
@@ -28,6 +30,10 @@ li {
 a {
   display: flex;
   justify-content: center;
+}
+
+.btn-login, .btn-signup{
+  text-align: center;
 }
 
 @media (max-width: 991px) {

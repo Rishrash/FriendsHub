@@ -13,6 +13,7 @@ app.use(
     useTempFiles: true,
   })
 );
+app.use(express.json());
 const PORT = process.env.PORT || 8000;
 
 // Read all files in the "routes" directory
@@ -28,7 +29,7 @@ routes.forEach((r) => {
 
 // setting up cors
 const corsOptions = {
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:5173", "http://localhost:5174"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 200,

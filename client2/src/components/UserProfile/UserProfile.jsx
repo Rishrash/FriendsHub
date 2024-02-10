@@ -22,12 +22,13 @@ export default function UserProfile() {
     dateOfBirth: 0,
   });
 
-  const fetchUserProfile = async () => {
+  const { userId } = useParams();
+
+  const fetchUserProfile = async (userId) => {
     try {
-      const { userId } = useParams();
-      console.log("UserId" + userId);
-      const response = await axios.get(`/getUserProfile/${userId}`);
-      console.log("Response" + response);
+      const response = await axios.get(
+        `http://localhost:8000/getUserProfile/${userId}`
+      );
       const userProfileData = response.data;
       setFormData(userProfileData);
     } catch (error) {
@@ -36,9 +37,8 @@ export default function UserProfile() {
   };
 
   useEffect(() => {
-    console.log("Hello, this is a log message");
-    fetchUserProfile();
-  }, []);
+    fetchUserProfile(userId);
+  }, [userId]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +53,10 @@ export default function UserProfile() {
 
     try {
       // Send a POST request to update user details
-      const response = await axios.post("/updateUserDetails", formData);
+      const response = await axios.post(
+        "http://localhost:8000/updateUserDetails",
+        formData
+      );
 
       // Handle the response as needed
       console.log("User details updated successfully:", response.data);
@@ -75,7 +78,7 @@ export default function UserProfile() {
             className="form-control"
             id="nickName"
             name="nickName"
-            value={formData.nickName}
+            value={formData.nickName || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -88,7 +91,7 @@ export default function UserProfile() {
             className="form-control"
             id="bio"
             name="bio"
-            value={formData.bio}
+            value={formData.bio || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -102,7 +105,7 @@ export default function UserProfile() {
             className="form-control"
             id="jobRole"
             name="jobRole"
-            value={formData.jobRole}
+            value={formData.jobRole || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -116,7 +119,7 @@ export default function UserProfile() {
             className="form-control"
             id="workplace"
             name="workplace"
-            value={formData.workplace}
+            value={formData.workplace || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -130,7 +133,7 @@ export default function UserProfile() {
             className="form-control"
             id="education"
             name="education"
-            value={formData.education}
+            value={formData.education || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -144,7 +147,7 @@ export default function UserProfile() {
             className="form-control"
             id="college"
             name="college"
-            value={formData.college}
+            value={formData.college || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -158,7 +161,7 @@ export default function UserProfile() {
             className="form-control"
             id="school"
             name="school"
-            value={formData.school}
+            value={formData.school || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -172,7 +175,7 @@ export default function UserProfile() {
             className="form-control"
             id="homeTown"
             name="homeTown"
-            value={formData.homeTown}
+            value={formData.homeTown || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -186,7 +189,7 @@ export default function UserProfile() {
             className="form-control"
             id="currentCity"
             name="currentCity"
-            value={formData.currentCity}
+            value={formData.currentCity || ""}
             onChange={handleInputChange}
           />
         </div>
@@ -199,7 +202,7 @@ export default function UserProfile() {
             className="form-select"
             id="relationshipStatus"
             name="relationshipStatus"
-            value={formData.relationshipStatus}
+            value={formData.relationshipStatus || ""}
             onChange={handleInputChange}
           >
             <option value="Single">Single</option>
@@ -228,12 +231,12 @@ export default function UserProfile() {
             className="form-control"
             id="mobileNumber"
             name="mobileNumber"
-            value={formData.mobileNumber}
+            value={formData.mobileNumber || ""}
             onChange={handleInputChange}
           />
         </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3 btn-update">
+        <div className="col-auto">
+          <button type="submit" className="btn btn-primary mb-3 btn-update">
             Update Profile
           </button>
         </div>

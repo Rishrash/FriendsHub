@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import validator from "validator";
 
 // const { ObjectId } = mongoose.Schema;
 
@@ -77,7 +79,6 @@ const userAccountInformationSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: [true, "Gender is required"],
     enum: ["male", "female", "other"],
   },
   yearOfBirth: {
@@ -161,6 +162,80 @@ const userAccountSchema = new mongoose.Schema({
   },
   userInformation: userAccountInformationSchema,
 });
+
+userAccountSchema.statics.signup = async function (
+  emailAddress,
+  password,
+  firstName,
+  lastName,
+  username,
+  dateOfBirth,
+  monthOfBirth,
+  yearOfBirth
+) {
+  // validation
+  if (
+    (!emailAddress || !password || !firstName || !lastName || !username,
+    !dateOfBirth,
+    !monthOfBirth,
+    !yearOfBirth)
+  ) {
+    throw Error("All fields must be filled");
+  }
+  if (!validator.isEmail(emailAddress)) {
+    throw Error("Email not valid");
+  }
+  if (!validator.isStrongPassword(password)) {
+    throw Error("Password not strong enough");
+  }
+
+  const isEmailExists = await this.findOne({ emailAddress });
+  const isUsernameExists = await this.findOne({ username });
+  if (isEmailExists) {
+    throw Error("Email already in use");
+  }
+  if (isUsernameExists) {
+    throw Error("Username already in use");
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+
+  const user = await this.create({
+    emailAddress,
+    password: hash,
+    firstName,
+    lastName,
+    username,
+    userInformation: {
+      dateOfBirth,
+      monthOfBirth,
+      yearOfBirth,
+    },
+  });
+
+  return user;
+};
+
+// static login method
+userAccountSchema.statics.login = async function (emailAddress, password) {
+  if (!emailAddress || !password) {
+    console.log("Calllllledddd");
+    throw Error("All fields must be filled");
+  }
+
+  const user = await this.findOne({ emailAddress });
+  if (!user) {
+    throw Error("Incorrect emailAddress");
+  }
+
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) {
+    throw Error("Incorrect password");
+  }
+
+  return user;
+};
 
 // Create a UserAccount model using the schema
 const UserAccount = mongoose.model("UserAccount", userAccountSchema);

@@ -11,5 +11,7 @@ router.put(
   UserAccountController.updateUserProfilePicture
 );
 router.post("/updateUserDetails", UserAccountController.updateUserDetails);
+router.post("/user/login", UserAccountController.loginUser);
+router.post("/user/signup", UserAccountController.signupUser);
 
 export default router;

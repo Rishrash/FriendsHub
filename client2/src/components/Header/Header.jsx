@@ -1,33 +1,45 @@
 import React from "react";
 import "./Header.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const userId = "jane.doe";
   return (
-    <header class="header overflow-hidden">
-      <nav class="navbar fixed-top navbar-expand-lg">
-        <div class="container">
+    <header className="header overflow-hidden">
+      <nav className="navbar fixed-top navbar-expand-lg">
+        <div className="container">
           <Link to="#" className="navbar-brand fs-4">
             <img src="Icons/Logo.png" alt="LOGO" />
           </Link>
+          <div className="d-flex nav-item mix-2 search-container">
+            <form className="search d-flex" role="search">
+              <input
+                className="form-control me-2"
+                type="search"
+                aria-label="Search"
+              />
+              <button className="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
           <button
-            class="navbar-toggler shadow-none "
+            className="navbar-toggler shadow-none "
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            class="sidebar offcanvas offcanvas-end"
-            tabindex="-1"
+            className="sidebar offcanvas offcanvas-end"
+            tabIndex="-1"
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
           >
-            <div class="offcanvas-header text-black border-bottom">
+            <div className="offcanvas-header text-black border-bottom">
               <Link
                 to="#"
                 className="offcanvas-title"
@@ -38,12 +50,12 @@ export default function Header() {
 
               <button
                 type="button"
-                class="btn-close shadow-none"
+                className="btn-close shadow-none"
                 data-bs-dismiss="offcanvas"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+            <div className="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
               <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
                 <li className="d-flex nav-item mix-2">
                   <Link
@@ -74,35 +86,15 @@ export default function Header() {
                     <img src="Icons/Notification.png" alt="Notification" />
                   </Link>
                 </li>
-                <li className="d-flex nav-item mix-2">
-                  <form className="search d-flex" role="search">
-                    <input
-                      className="form-control me-2"
-                      type="search"
-                      aria-label="Search"
-                    />
-                    <button className="btn btn-outline-success" type="submit">
-                      Search
-                    </button>
-                  </form>
-                </li>
               </ul>
-              <div class="log d-flex flex-column flex-lg-row justify-content-center align-item-center p-3 gap-3">
-                <NavLink
-                  to="#login"
-                  activeClassName="active"
-                  className="nav-link"
-                >
+              <div className="log d-flex flex-column flex-lg-row justify-content-center align-item-center p-3 gap-3">
+                <Link to="/login" className="btn-login">
                   Login
-                </NavLink>
+                </Link>
 
-                <NavLink
-                  to="#signup"
-                  activeClassName="active"
-                  className="Signup text-decoration-none"
-                >
+                <Link to="/signup" className="btn-signup">
                   Sign Up
-                </NavLink>
+                </Link>
               </div>
             </div>
           </div>
