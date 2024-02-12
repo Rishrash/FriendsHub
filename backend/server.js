@@ -3,10 +3,17 @@ import cors from "cors";
 import { readdirSync } from "fs";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import fileUpload from "express-fileupload";
 
 dotenv.config();
 
 const app = express();
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
+app.use(express.json());
 const PORT = process.env.PORT || 8000;
 
 // Read all files in the "routes" directory
@@ -14,18 +21,19 @@ const routes = readdirSync("./routes");
 
 // Dynamically include each route
 routes.forEach((r) => {
-  const route = require(`./routes/${r}`);
-  app.use("/", route);
+  import(`./routes/${r}`).then((module) => {
+    const route = module.default;
+    app.use("/", route);
+  });
 });
 
 // setting up cors
 const corsOptions = {
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:5173", "http://localhost:5174"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 200,
 };
-
 app.use(cors(corsOptions));
 
 // Connect to MongoDB

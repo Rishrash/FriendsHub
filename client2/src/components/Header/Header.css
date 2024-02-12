@@ -1,0 +1,44 @@
+.header{
+  margin-bottom: 200px;
+}
+
+.navbar{
+  background-color: #f8f9fa;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+}
+.navbar-brand img {
+  width: 60px;
+}
+
+.offcanvas-header img {
+  width: 60px;
+}
+
+.nav-item img {
+  width: 30px;
+}
+
+.search-container{
+  margin: 20px;
+}
+li {
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-login, .btn-signup{
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+      background-color: #f8f9fa;
+      backdrop-filter: blur(10px);
+  }
+}
