@@ -5,6 +5,7 @@
 .navbar{
   background-color: #f8f9fa;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  height:100px;
 
 }
 .navbar-brand img {
@@ -32,13 +33,67 @@ a {
   justify-content: center;
 }
 
-.btn-login, .btn-signup{
+.btn-login, .btn-signup, .btn-logout{
   text-align: center;
 }
 
+.link{
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.logo-text {
+  font-family: 'Poppins', sans-serif; 
+  font-size: 1em; 
+  font-weight: 700; 
+  text-transform: uppercase;
+  letter-spacing: 2px; 
+  margin: 0; 
+}
+
+.auth{
+  display: flex;
+  gap:2em;
+  align-items: center;
+}
+
+.btn-search{
+  height: 40px;
+  margin-top: 10px;
+}
+
+@media (max-width: 1200px) {
+  .logo-text{
+    font-size: 0.8em;
+  }
+  .auth{
+    font-size: 0.9em;
+  }
+}
 @media (max-width: 991px) {
   .sidebar {
       background-color: #f8f9fa;
       backdrop-filter: blur(10px);
+  }
+  .auth{
+    margin-top: 30px;
+    flex-direction: column;
+    gap:2em;
+    align-items: center;
+  }
+
+  .logo-text{
+    font-size: 1em;
+  }
+  .auth{
+    font-size: 1em;
   }
 }

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
+  const navigateTo = useNavigate();
 
   const login = async (emailAddress, password) => {
     setIsLoading(true);
@@ -16,7 +18,7 @@ export const useLogin = () => {
       body: JSON.stringify({ emailAddress, password }),
     });
     const json = await response.json();
-
+    console.log("Json " + JSON.stringify(response));
     if (!response.ok) {
       setIsLoading(false);
       setError(json.error);
@@ -30,6 +32,7 @@ export const useLogin = () => {
 
       // update loading state
       setIsLoading(false);
+      navigateTo("/");
     }
   };
 
