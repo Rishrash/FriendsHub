@@ -17,18 +17,14 @@ export default function Header() {
   const userId = "jane.doe";
   const { logout } = useLogout();
   const storedUserData = localStorage.getItem("user");
-  let emailAddress = "rishababbhi@gmail.com";
+  let emailAddress = "";
   if (storedUserData) {
     console.log("Inside");
     // Parse the JSON string back into a JavaScript object
     const userData = JSON.parse(storedUserData);
 
-    // Now userData is an object containing your stored data
-    console.log("User Data:", userData);
     // Access individual properties
     emailAddress = userData.emailAddress;
-
-    console.log("Email Address:", emailAddress);
   }
   const handleClick = () => {
     logout();
@@ -40,7 +36,8 @@ export default function Header() {
           <Link to="#" className="navbar-brand fs-4">
             {/* <img src="Icons/Logo.png" alt="LOGO" /> */}
             <div className="logo-container">
-              <span className="logo-text">FriendsHub</span>
+              <span className="logo-text">Friends</span>
+              <span className="logo-text1">Hub</span>
             </div>
           </Link>
           <button
@@ -67,7 +64,8 @@ export default function Header() {
               >
                 {/* <img src="Icons/Logo.png" alt="LOGO" /> */}
                 <div className="logo-container">
-                  <span className="logo-text">FriendsHub</span>
+                  <span className="logo-text">Friends</span>
+                  <span className="logo-text1">Hub</span>
                 </div>
               </Link>
 
@@ -91,61 +89,76 @@ export default function Header() {
                   </button>
                 </form>
               </div>
-              <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
-                <li className="d-flex nav-item mix-2">
-                  <Link
-                    // to={`/userProfile/${userId}`}
-                    to={`/displayUserProfile/${emailAddress}`}
-                    className="nav-link"
-                  >
-                    {/* <img src="Icons/Profile.png" alt="Profile" /> */}
-                    <FontAwesomeIcon
-                      icon={faUser}
-                      size="xl"
-                      style={{ color: "#212529" }}
-                    />
-                  </Link>
-                </li>
-                <li className="d-flex nav-item mix-2">
-                  <Link to="/" className="nav-link active" aria-current="page">
-                    {/* <img src="Icons/Home.png" alt="Home" /> */}
-                    <FontAwesomeIcon
-                      icon={faHouse}
-                      size="xl"
-                      style={{ color: "#212529" }}
-                    />
-                  </Link>
-                </li>
-                <li className="d-flex nav-item">
-                  <Link to="/" className="nav-link">
-                    {/* <img src="Icons/Friend_request.png" alt="Friend Request" /> */}
-                    <FontAwesomeIcon
-                      icon={faUserFriends}
-                      size="xl"
-                      style={{ color: "#212529" }}
-                    />
-                  </Link>
-                </li>
-                <li className="d-flex nav-item mix-2">
-                  <Link to="/" className="nav-link">
-                    <FontAwesomeIcon
-                      icon={faComment}
-                      size="xl"
-                      style={{ color: "#212529" }}
-                    />
-                  </Link>
-                </li>
-                <li className="d-flex nav-item mix-2">
-                  <Link to="/" className="nav-link">
-                    {/* <img src="Icons/Notification.png" alt="Notification" /> */}
-                    <FontAwesomeIcon
-                      icon={faBell}
-                      size="xl"
-                      style={{ color: "#212529" }}
-                    />
-                  </Link>
-                </li>
-              </ul>
+              {user && (
+                <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
+                  <li className="d-flex nav-item mix-2">
+                    <Link
+                      // to={`/userProfile/${userId}`}
+                      to={`/displayUserProfile/${emailAddress}`}
+                      className="nav-link"
+                    >
+                      {/* <img src="Icons/Profile.png" alt="Profile" /> */}
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        size="xl"
+                        style={{ color: "#212529" }}
+                      />
+                    </Link>
+                  </li>
+                  <li className="d-flex nav-item mix-2">
+                    <Link
+                      to="/"
+                      className="nav-link active"
+                      aria-current="page"
+                    >
+                      {/* <img src="Icons/Home.png" alt="Home" /> */}
+                      <FontAwesomeIcon
+                        icon={faHouse}
+                        size="xl"
+                        style={{ color: "#212529" }}
+                      />
+                    </Link>
+                  </li>
+                  <li className="d-flex nav-item">
+                    <Link to="/" className="nav-link">
+                      {/* <img src="Icons/Friend_request.png" alt="Friend Request" /> */}
+                      <FontAwesomeIcon
+                        icon={faUserFriends}
+                        size="xl"
+                        style={{ color: "#212529" }}
+                      />
+                    </Link>
+                  </li>
+                  <li className="d-flex nav-item mix-2">
+                    <Link to="/" className="nav-link">
+                      <FontAwesomeIcon
+                        icon={faComment}
+                        size="xl"
+                        style={{ color: "#212529" }}
+                      />
+                    </Link>
+                  </li>
+                  <li className="d-flex nav-item mix-2">
+                    <Link to="/" className="nav-link">
+                      {/* <img src="Icons/Notification.png" alt="Notification" /> */}
+                      <FontAwesomeIcon
+                        icon={faBell}
+                        size="xl"
+                        style={{ color: "#212529" }}
+                      />
+                    </Link>
+                  </li>
+                </ul>
+              )}
+              {!user && (
+                <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
+                  <li className="d-flex nav-item mix-2"></li>
+                  <li className="d-flex nav-item mix-2"></li>
+                  <li className="d-flex nav-item"></li>
+                  <li className="d-flex nav-item mix-2"></li>
+                  <li className="d-flex nav-item mix-2"></li>
+                </ul>
+              )}
               <div className="auth">
                 {user && (
                   <div>

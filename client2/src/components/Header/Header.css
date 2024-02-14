@@ -50,13 +50,18 @@ a {
   height: 100px;
 }
 
-.logo-text {
+.logo-text, .logo-text1{
   font-family: 'Poppins', sans-serif; 
   font-size: 1em; 
   font-weight: 700; 
   text-transform: uppercase;
   letter-spacing: 2px; 
   margin: 0; 
+  color: #0b5ed7;
+}
+
+.logo-text1{
+  color: black;
 }
 
 .auth{
@@ -71,7 +76,7 @@ a {
 }
 
 @media (max-width: 1200px) {
-  .logo-text{
+  .logo-text, .logo-text1{
     font-size: 0.8em;
   }
   .auth{
@@ -90,9 +95,10 @@ a {
     align-items: center;
   }
 
-  .logo-text{
+  .logo-text, .logo-text1{
     font-size: 1em;
   }
+
   .auth{
     font-size: 1em;
   }
