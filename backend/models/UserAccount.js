@@ -107,61 +107,67 @@ const userAccountInformationSchema = new mongoose.Schema({
 });
 
 // Define the userAccountSchema
-const userAccountSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: [true, "First name is required"],
-    trim: true,
-    text: true,
+const userAccountSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: [true, "First name is required"],
+      trim: true,
+      text: true,
+    },
+    lastName: {
+      type: String,
+      required: [true, "Last name is required"],
+      trim: true,
+      text: true,
+    },
+    username: {
+      type: String,
+      required: [true, "Username is required"],
+      unique: true,
+      trim: true,
+      text: true,
+    },
+    profilePicture: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    emailAddress: {
+      type: String,
+      required: [true, "Email address is required"],
+      unique: true,
+      trim: true,
+      text: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Password is required"],
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
+    },
+
+    userInformation: userAccountInformationSchema,
   },
-  lastName: {
-    type: String,
-    required: [true, "Last name is required"],
-    trim: true,
-    text: true,
-  },
-  username: {
-    type: String,
-    required: [true, "Username is required"],
-    unique: true,
-    trim: true,
-    text: true,
-  },
-  profilePicture: {
-    type: String,
-    trim: true,
-    default: "",
-  },
-  emailAddress: {
-    type: String,
-    required: [true, "Email address is required"],
-    unique: true,
-    trim: true,
-    text: true,
-  },
-  password: {
-    type: String,
-    required: [true, "Password is required"],
-  },
-  isBlocked: {
-    type: Boolean,
-    default: false,
-  },
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  role: {
-    type: String,
-    enum: ["admin", "user"],
-    default: "user",
-  },
-  userInformation: userAccountInformationSchema,
-});
+  {
+    timestamps: true,
+  }
+);
 
 userAccountSchema.statics.signup = async function (
   emailAddress,
@@ -220,7 +226,6 @@ userAccountSchema.statics.signup = async function (
 // static login method
 userAccountSchema.statics.login = async function (emailAddress, password) {
   if (!emailAddress || !password) {
-    console.log("Calllllledddd");
     throw Error("All fields must be filled");
   }
 

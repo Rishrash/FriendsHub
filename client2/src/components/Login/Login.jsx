@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
+import "./Login.css";
 
 const Login = () => {
   const [emailAddress, setEmail] = useState("");
@@ -28,8 +29,12 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
+      <div className="btn-container">
+        <button className="btn btn-outline-primary" disabled={isLoading}>
+          Log in
+        </button>
+      </div>
 
-      <button disabled={isLoading}>Log in</button>
       {error && <div className="error">{error}</div>}
     </form>
   );

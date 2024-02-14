@@ -1,0 +1,14 @@
+.signup input{
+  background-color: rgb(238, 239, 245);
+  color:black;
+}
+
+.signup{
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

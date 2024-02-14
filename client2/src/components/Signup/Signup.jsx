@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
+import "./Signup.css";
 
 const Signup = () => {
   const [emailAddress, setEmail] = useState("");
@@ -13,7 +14,21 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(emailAddress, password, firstName, lastName, username, dob);
+    try {
+      // Await the signup method to complete
+      const response = await signup(
+        emailAddress,
+        password,
+        firstName,
+        lastName,
+        username,
+        dob
+      );
+    } catch (error) {
+      // Handle any errors that occur during the signup process
+      console.error("Error during signup:", error);
+      // You may want to add further error handling or feedback to the user here
+    }
   };
 
   return (
@@ -57,8 +72,12 @@ const Signup = () => {
 
       <label>Date of Birth:</label>
       <input type="date" onChange={(e) => setDob(e.target.value)} value={dob} />
+      <div className="btn-container">
+        <button className="btn btn-outline-primary" disabled={isLoading}>
+          Sign up
+        </button>
+      </div>
 
-      <button disabled={isLoading}>Sign up</button>
       {error && <div className="error">{error}</div>}
     </form>
   );

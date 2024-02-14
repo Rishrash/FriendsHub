@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import Layout from "./Layout.jsx";
 import Home from "./components/Home/Home.jsx";
-import UserProfile from "./components/UserProfile/UserProfile.jsx";
+import UpdateUserProfile from "./components/UserProfile/UpdateUserProfile/UpdateUserProfile.jsx";
 import Login from "./components/Login/Login.jsx";
 import Signup from "./components/Signup/Signup.jsx";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
@@ -14,12 +14,17 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import DisplayUserProfile from "./components/UserProfile/DisplayUserProfile/DisplayUserProfile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Home />} />
-      <Route path="userProfile/:userId" element={<UserProfile />} />
+      <Route path="updateUserProfile/:userId" element={<UpdateUserProfile />} />
+      <Route
+        path="displayUserProfile/:userId"
+        element={<DisplayUserProfile />}
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       {/* <Route

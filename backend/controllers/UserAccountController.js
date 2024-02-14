@@ -17,7 +17,6 @@ class UserAccountController {
 
     try {
       const user = await UserAccount.login(emailAddress, password);
-
       // create a token
       const token = jwt.sign({ _id: user._id }, process.env.SECRET, {
         expiresIn: "3d",
@@ -38,7 +37,7 @@ class UserAccountController {
     try {
       const _dob = new Date(dob);
 
-      const dateOfBirth = _dob.getDate();
+      const dateOfBirth = _dob.getDate() + 1;
       const monthOfBirth = _dob.getMonth() + 1;
       const yearOfBirth = _dob.getFullYear();
       const user = await UserAccount.signup(
@@ -93,33 +92,6 @@ class UserAccountController {
           friendRequests: [],
         },
       });
-      // const dummyUser = new UserAccount({
-      //   firstName: "Jane",
-      //   lastName: "Doe",
-      //   username: "jane.doe",
-      //   emailAddress: "jane@example.com",
-      //   password: await bcrypt.hash("password456", 10), // Hash the password
-      //   role: "user",
-      //   userInformation: {
-      //     nickName: "Janie",
-      //     bio: "I am a software engineer.",
-      //     jobRole: "Full Stack Developer",
-      //     workplace: "Tech Innovators",
-      //     education: "Master's Degree",
-      //     college: "Tech University",
-      //     school: "High Tech School",
-      //     homeTown: "Techville",
-      //     currentCity: "Innovation City",
-      //     relationshipStatus: "In a relationship",
-      //     mobileNumber: "9876543210",
-      //     gender: "female",
-      //     yearOfBirth: 1995,
-      //     monthOfBirth: 8,
-      //     dateOfBirth: 20,
-      //     friends: [],
-      //     friendRequests: [],
-      //   },
-      // });
       const savedUser = await dummyUser.save();
 
       res.status(200);
@@ -150,12 +122,12 @@ class UserAccountController {
 
   static getUserProfile = async (req, res) => {
     try {
-      const { username } = req.params;
-      const userProfile = await UserAccount.findOne({ username });
+      const { emailAddress } = req.params;
+      const userProfile = await UserAccount.findOne({ emailAddress });
       if (!userProfile) {
         return res.status(404).json({ message: "User not found" });
       }
-      res.json({ userProfile });
+      res.json({ userProfileData: userProfile });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -177,8 +149,9 @@ class UserAccountController {
   static updateUserDetails = async (req, res) => {
     try {
       const updatedUserData = req.body;
+      console.log("updatedUserData" + updatedUserData.emailAddress);
       const updatedUserInformation = await UserAccount.updateOne(
-        { username: "kalwant.singh" },
+        { emailAddress: updatedUserData.emailAddress },
         {
           $set: {
             "userInformation.nickName": updatedUserData.nickName,
