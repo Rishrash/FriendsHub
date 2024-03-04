@@ -20,17 +20,23 @@ const Login = () => {
       <label>Email address:</label>
       <input
         type="email"
+        id="emailAddress"
         onChange={(e) => setEmail(e.target.value)}
         value={emailAddress}
       />
       <label>Password:</label>
       <input
         type="password"
+        id="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
       <div className="btn-container">
-        <button className="btn btn-outline-primary" disabled={isLoading}>
+        <button
+          className="btn btn-outline-primary"
+          id="login-btn"
+          disabled={isLoading}
+        >
           Log in
         </button>
       </div>

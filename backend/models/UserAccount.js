@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import validator from "validator";
 
-// const { ObjectId } = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 // Define the UserAccountInformationSchema
 const userAccountInformationSchema = new mongoose.Schema({
@@ -163,6 +163,18 @@ const userAccountSchema = new mongoose.Schema(
     },
 
     userInformation: userAccountInformationSchema,
+    userPosts: [
+      {
+        post: {
+          type: ObjectId,
+          ref: "Post",
+        },
+        savedAt: {
+          type: Date,
+          default: new Date(),
+        },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -192,7 +204,9 @@ userAccountSchema.statics.signup = async function (
     throw Error("Email not valid");
   }
   if (!validator.isStrongPassword(password)) {
-    throw Error("Password not strong enough");
+    throw Error(
+      "Password must be at least 8 characters and include 1 lowercase, 1 uppercase, 1 number, and 1 symbol."
+    );
   }
 
   const isEmailExists = await this.findOne({ emailAddress });
@@ -245,5 +259,4 @@ userAccountSchema.statics.login = async function (emailAddress, password) {
 // Create a UserAccount model using the schema
 const UserAccount = mongoose.model("UserAccount", userAccountSchema);
 
-// Export the model for use in other parts of the application
 export default UserAccount;

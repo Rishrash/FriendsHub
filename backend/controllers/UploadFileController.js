@@ -17,9 +17,9 @@ class UploadFileController {
       let files = Object.values(req.files).flat();
       let images = [];
       for (const file of files) {
-        const url = await uploadToCloud(file, path);
+        const url = await this.uploadToCloud(file, path);
         images.push(url);
-        removeFile(file.tempFilePath);
+        this.removeFile(file.tempFilePath);
       }
       res.json(images);
     } catch (error) {
@@ -27,23 +27,7 @@ class UploadFileController {
     }
   };
 
-  // const listImages = async (req, res) => {
-  //   const { path, sort, max } = req.body;
-
-  //   cloudinary.v2.search
-  //     .expression(`${path}`)
-  //     .sort_by("created_at", `${sort}`)
-  //     .max_results(max)
-  //     .execute()
-  //     .then((result) => {
-  //       res.json(result);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.error.message);
-  //     });
-  // };
-
-  uploadToCloudinary = async (file, path) => {
+  static uploadToCloud = async (file, path) => {
     return new Promise((resolve) => {
       cloudinary.v2.uploader.upload(
         file.tempFilePath,
@@ -52,7 +36,7 @@ class UploadFileController {
         },
         (err, res) => {
           if (err) {
-            removeFile(file.tempFilePath);
+            this.removeFile(file.tempFilePath);
             return res.status(400).json({ message: "Upload image failed." });
           }
           resolve({
@@ -63,7 +47,23 @@ class UploadFileController {
     });
   };
 
-  removeFile = (filePath) => {
+  static listImages = async (req, res) => {
+    const { path, sort, max } = req.body;
+
+    cloudinary.v2.search
+      .expression(`${path}`)
+      .sort_by("created_at", `${sort}`)
+      .max_results(max)
+      .execute()
+      .then((result) => {
+        res.json(result);
+      })
+      .catch((err) => {
+        console.log(err.error.message);
+      });
+  };
+
+  static removeFile = (filePath) => {
     fs.unlink(filePath, (err) => {
       if (err) throw err;
     });

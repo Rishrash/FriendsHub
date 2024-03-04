@@ -1,28 +1,23 @@
 import UserAccount from "../models/UserAccount.js";
 import bcrypt from "bcrypt";
-import express from "express";
 import jwt from "jsonwebtoken";
 
 class UserAccountController {
-  app = express();
-
-  constructor() {
-    this.app.use(bodyParser.json());
-    this.app.use(express.json());
-  }
-
   // login a user
   static loginUser = async (req, res) => {
     const { emailAddress, password } = req.body;
 
     try {
       const user = await UserAccount.login(emailAddress, password);
+
+      const userId = user._id;
+      const username = user.username;
       // create a token
-      const token = jwt.sign({ _id: user._id }, process.env.SECRET, {
+      const token = jwt.sign({ _id: userId }, process.env.SECRET, {
         expiresIn: "3d",
       });
 
-      res.status(200).json({ emailAddress, token });
+      res.status(200).json({ userId, username, token });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -122,8 +117,8 @@ class UserAccountController {
 
   static getUserProfile = async (req, res) => {
     try {
-      const { emailAddress } = req.params;
-      const userProfile = await UserAccount.findOne({ emailAddress });
+      const { username } = req.params;
+      const userProfile = await UserAccount.findOne({ username });
       if (!userProfile) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -149,9 +144,9 @@ class UserAccountController {
   static updateUserDetails = async (req, res) => {
     try {
       const updatedUserData = req.body;
-      console.log("updatedUserData" + updatedUserData.emailAddress);
+      console.log("updatedUserData" + updatedUserData.username);
       const updatedUserInformation = await UserAccount.updateOne(
-        { emailAddress: updatedUserData.emailAddress },
+        { username: updatedUserData.username },
         {
           $set: {
             "userInformation.nickName": updatedUserData.nickName,
