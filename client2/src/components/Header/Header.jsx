@@ -14,17 +14,16 @@ import { useLogout } from "../../hooks/useLogout";
 
 export default function Header() {
   const { user } = useAuthContext();
-  const userId = "jane.doe";
   const { logout } = useLogout();
   const storedUserData = localStorage.getItem("user");
-  let emailAddress = "";
+  let username = "";
   if (storedUserData) {
     console.log("Inside");
     // Parse the JSON string back into a JavaScript object
     const userData = JSON.parse(storedUserData);
 
     // Access individual properties
-    emailAddress = userData.emailAddress;
+    username = userData.username;
   }
   const handleClick = () => {
     logout();
@@ -93,11 +92,9 @@ export default function Header() {
                 <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
                   <li className="d-flex nav-item mix-2">
                     <Link
-                      // to={`/userProfile/${userId}`}
-                      to={`/displayUserProfile/${emailAddress}`}
+                      to={`/displayUserProfile/${username}`}
                       className="nav-link"
                     >
-                      {/* <img src="Icons/Profile.png" alt="Profile" /> */}
                       <FontAwesomeIcon
                         icon={faUser}
                         size="xl"
@@ -111,7 +108,6 @@ export default function Header() {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      {/* <img src="Icons/Home.png" alt="Home" /> */}
                       <FontAwesomeIcon
                         icon={faHouse}
                         size="xl"
@@ -121,7 +117,6 @@ export default function Header() {
                   </li>
                   <li className="d-flex nav-item">
                     <Link to="/" className="nav-link">
-                      {/* <img src="Icons/Friend_request.png" alt="Friend Request" /> */}
                       <FontAwesomeIcon
                         icon={faUserFriends}
                         size="xl"
@@ -140,7 +135,6 @@ export default function Header() {
                   </li>
                   <li className="d-flex nav-item mix-2">
                     <Link to="/" className="nav-link">
-                      {/* <img src="Icons/Notification.png" alt="Notification" /> */}
                       <FontAwesomeIcon
                         icon={faBell}
                         size="xl"

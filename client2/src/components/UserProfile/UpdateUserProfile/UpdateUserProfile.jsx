@@ -17,7 +17,7 @@ export default function UpdateUserProfile() {
     relationshipStatus: "",
     mobileNumber: "",
     gender: "",
-    emailAddress: "",
+    username: "",
   });
   const [userData, setUserData] = useState({});
   const { userId } = useParams();
@@ -33,7 +33,7 @@ export default function UpdateUserProfile() {
       setFormData({ ...responseData.userProfileData.userInformation });
       setFormData((prevFormData) => ({
         ...prevFormData,
-        emailAddress: userId,
+        username: userId,
       }));
       setFullName(
         `${responseData.userProfileData.firstName} ${responseData.userProfileData.lastName}`
