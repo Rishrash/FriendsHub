@@ -8,49 +8,75 @@
   width: 80%;
 }
 
-.drop-zone-text{
+.drop-zone-text {
   cursor: pointer;
 }
 
-.selected-image{
+.selected-image {
   height: 150px;
   width: auto;
 }
 
-.login input{
+.login input {
   background-color: rgb(238, 239, 245);
-  color:black;
+  color: black;
 }
-.login{
+
+.login {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
-.create-post-form textarea{
+
+.create-post-form textarea {
   width: 80%;
 }
-.create-post-form select, .create-post-form textarea {
+
+.create-post-form select,
+.create-post-form textarea {
   background-color: rgb(246, 242, 242);
-  color:black;
+  color: black;
 
 }
-
-.create-post-container{
-  width: 50%;
-  margin: 0 auto;
-  margin-bottom: 100px;
-  padding: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border-radius: 2em;
-}
-
-.create-post-subcontainer{
-  width: 100%;
+.create-post-subcontainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
- 
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 50;
+  background-color: #f1f1f1;
+  overflow: hidden;
 }
 
-.error-message{
+.error-message {
   color: red;
   font-weight: bold;
+}
+
+.create-post-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #0b5ed7;
+  color: white;
+  font-weight: bold;
+  height: 4rem;
+  width: 4rem;
+  font-size: 2rem;
+  position: fixed;
+  bottom: 34px;
+  right: 34px;
+  z-index: 99;
+  transition: transform 0.5s ease;
+}
+.rotate-icon{
+  transform: rotate(45deg);
+  background-color: gray;
+}
+.rotate-icon:hover{
+  background-color: red;
 }
