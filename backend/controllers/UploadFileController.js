@@ -29,14 +29,16 @@ class UploadFileController {
 
   static uploadToCloud = async (file, path) => {
     return new Promise((resolve) => {
+      const filepath = !file.tempFilePath ? file : file.tempFilePath;
       cloudinary.v2.uploader.upload(
-        file.tempFilePath,
+        filepath,
         {
           folder: path,
+          public_id: file.name,
         },
         (err, res) => {
           if (err) {
-            this.removeFile(file.tempFilePath);
+            this.removeFile(filepath);
             return res.status(400).json({ message: "Upload image failed." });
           }
           resolve({

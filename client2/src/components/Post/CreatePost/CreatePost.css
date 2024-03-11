@@ -1,0 +1,56 @@
+.dropzone {
+  border: 2px dashed #cccccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.drop-zone-text{
+  cursor: pointer;
+}
+
+.selected-image{
+  height: 150px;
+  width: auto;
+}
+
+.login input{
+  background-color: rgb(238, 239, 245);
+  color:black;
+}
+.login{
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.create-post-form textarea{
+  width: 80%;
+}
+.create-post-form select, .create-post-form textarea {
+  background-color: rgb(246, 242, 242);
+  color:black;
+
+}
+
+.create-post-container{
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 2em;
+}
+
+.create-post-subcontainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+}
+
+.error-message{
+  color: red;
+  font-weight: bold;
+}

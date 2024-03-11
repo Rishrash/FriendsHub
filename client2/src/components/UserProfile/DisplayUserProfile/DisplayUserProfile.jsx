@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./DisplayUserProfile.css";
 import axios from "axios";
@@ -9,6 +9,7 @@ export default function DisplayUserProfile() {
     lastName: "",
     username: "",
     emailAddress: "",
+    profilePicture: "",
     nickName: "",
     bio: "",
     jobRole: "",
@@ -25,6 +26,7 @@ export default function DisplayUserProfile() {
     monthOfBirth: 0,
     dateOfBirth: 0,
   });
+  const [imageSrc, setImageSrc] = useState("/Images/profile-picture.png");
   const { userId } = useParams();
   console.log("User Id - " + userId);
   const fetchUserProfile = async (userId) => {
@@ -38,6 +40,7 @@ export default function DisplayUserProfile() {
         lastName: responseData.userProfileData.lastName,
         username: responseData.userProfileData.username,
         emailAddress: responseData.userProfileData.emailAddress,
+        profilePicture: responseData.userProfileData.profilePicture,
         nickName: responseData.userProfileData.userInformation.nickName,
         bio: responseData.userProfileData.userInformation.bio,
         jobRole: responseData.userProfileData.userInformation.jobRole,
@@ -58,9 +61,47 @@ export default function DisplayUserProfile() {
         dateOfBirth:
           responseData.userProfileData.userInformation.dateOfBirth || 0,
       });
+
+      setImageSrc(responseData.userProfileData.profilePicture);
     } catch (error) {
       console.error("Error fetching user profile:", error);
     }
+  };
+
+  const fileInputRef = useRef(null);
+
+  const handleImage = async (event) => {
+    try {
+      const selectedFile = event.target.files[0];
+
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+        formData.append("path", `friendsHub/${userId}/profilePictures`);
+        formData.append("username", userId);
+
+        const uploadApiUrl = "http://localhost:8000/updateUserProfilePicture";
+
+        // Make an API call to upload the image
+        const response = await axios.put(uploadApiUrl, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        const updatedImageSrc = response.data.url;
+
+        // Update the state with the new image URL
+        setImageSrc(updatedImageSrc);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      // Handle errors
+    }
+  };
+
+  const handleEditImageClick = () => {
+    fileInputRef.current.click();
   };
 
   useEffect(() => {
@@ -74,8 +115,20 @@ export default function DisplayUserProfile() {
           <div className="profile-picture-container">
             <img
               className="profile-picture"
-              src="/Images/profile-picture.png"
+              src={imageSrc}
               alt="Profile Picture"
+            />
+          </div>
+          <div>
+            <a className="edit-image" onClick={handleEditImageClick}>
+              Edit Image
+            </a>
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              ref={fileInputRef}
+              onChange={handleImage}
             />
           </div>
           <span className="fullName">

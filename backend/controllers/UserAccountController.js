@@ -1,4 +1,5 @@
 import UserAccount from "../models/UserAccount.js";
+import UploadFileController from "./UploadFileController.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -130,12 +131,19 @@ class UserAccountController {
 
   static updateUserProfilePicture = async (req, res) => {
     try {
-      const { url } = req.body;
+      const { path, username } = req.body;
+      let files = Object.values(req.files).flat();
+      let response = await UploadFileController.uploadToCloud(files[0], path);
 
-      await UserAccount.findByIdAndUpdate(req.user.id, {
-        profilePicture: url,
-      });
-      res.json(url);
+      await UserAccount.updateOne(
+        { username: username },
+        {
+          $set: {
+            profilePicture: response.url,
+          },
+        }
+      );
+      res.json(response);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

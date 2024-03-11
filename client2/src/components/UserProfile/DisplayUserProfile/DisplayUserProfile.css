@@ -21,8 +21,22 @@
   font-size: x-large;
 }
 
+
+a.edit-image{
+cursor: pointer;
+color: var(--link-color);
+}
+
+a.edit-image:hover{
+  color: var(--link-color-hover);
+  }
+
 .profile-picture{
+  width: 5em;
   height: 5em;
+  border-radius: 50%;
+  /* background-color: black; */
+
 }
 
 .table-container{
