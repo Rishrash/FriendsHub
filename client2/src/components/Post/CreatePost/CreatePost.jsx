@@ -77,10 +77,29 @@ const CreatePost = () => {
     }
   };
 
+  //for managing the create post subcontainer toggle state in order to show the container
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [iconClass, setIconClass] = useState("create-post-item");
+
+  const toggleCreatePost = () => {
+    setShowCreatePost(prevState => !prevState);
+    console.log(showCreatePost);
+    if(!showCreatePost){
+      setIconClass("create-post-item rotate-icon");
+    }
+    else{
+      setIconClass("create-post-item");
+
+    }
+  }
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="create-post-container">
-      <div className="create-post-subcontainer">
-        <h2>Create New Post</h2>
+      {showCreatePost && <div className="create-post-subcontainer ">
+        <h2 class="post-heading">Create New Post</h2>
         <form className="create-post-form" onSubmit={handleSubmit}>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <div>
@@ -133,8 +152,13 @@ const CreatePost = () => {
             </select>
           </div>
 
-          <button type="submit">Create Post</button>
+          <button type="submit" onClick={errorMessage?handleRefresh:""}>Create Post</button>
         </form>
+      </div>}
+      <div className={iconClass} onClick={toggleCreatePost}>
+        <div className="add-post-icon">
+          <i class="fa-solid fa-plus"></i>
+        </div>
       </div>
     </div>
   );

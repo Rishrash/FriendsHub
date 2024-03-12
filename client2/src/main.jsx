@@ -15,6 +15,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import DisplayUserProfile from "./components/UserProfile/DisplayUserProfile/DisplayUserProfile.jsx";
+import Search from "./components/Search/Search.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

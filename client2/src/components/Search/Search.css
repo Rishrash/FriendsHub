@@ -1,0 +1,14 @@
+.search-results{
+  position: absolute;
+  width: 27%;
+}
+.user-suggest{
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.user-suggest:last-child{
+  border-radius: 0 0 20px 20px;
+}
