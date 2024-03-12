@@ -26,7 +26,6 @@ router.get('/search', async (req, res) => {
                 }
             }
         ]).toArray();
-
         res.json(searchResults);
     } catch (err) {
         console.error(err);

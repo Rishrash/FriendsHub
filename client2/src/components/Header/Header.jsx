@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
+import Search from "../Search/Search";
 
 export default function Header() {
   const { user } = useAuthContext();
@@ -77,16 +78,7 @@ export default function Header() {
             </div>
             <div className="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
               <div className="d-flex nav-item mix-2 search-container">
-                <form className="search d-flex" role="search">
-                  <input
-                    className="form-control me-2 col-sm"
-                    type="search"
-                    aria-label="Search"
-                  />
-                  <button className="btn btn-search btn-primary" type="submit">
-                    Search
-                  </button>
-                </form>
+                <Search/>
               </div>
               {user && (
                 <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
