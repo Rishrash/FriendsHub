@@ -17,14 +17,17 @@
   width: auto;
 }
 
-.login input {
-  background-color: rgb(238, 239, 245);
-  color: black;
+h2{
+  font-family: 'Poppins', sans-serif; 
+  font-size: 2em; 
+  font-weight: 700; 
+  text-transform: uppercase;
+  letter-spacing: 2px; 
+  margin-bottom: 2rem; 
+  color: #0b5ed7;
 }
 
-.login {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
+
 
 .create-post-form textarea {
   width: 80%;
@@ -36,11 +39,26 @@
   color: black;
 
 }
-.create-post-subcontainer {
+
+.post-container{
+  margin: 10px auto;
+  margin-top: 200px;
+  height: 70vh;
+  width: 50vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+}
+.create-post-subcontainer {
+  
   height: 100vh;
   width: 100%;
   position: fixed;
@@ -79,4 +97,14 @@
 }
 .rotate-icon:hover{
   background-color: red;
+}
+
+.cross-icon{
+  color: red;
+  font-weight: bold;
+  transition: transform 0.5s ease;
+}
+
+.cross-icon:hover{
+  transform: scale(1.1);
 }

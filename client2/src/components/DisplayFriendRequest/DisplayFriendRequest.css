@@ -1,0 +1,46 @@
+.user-profiles-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-profile-card {
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.profile-details h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.profile-details p {
+  margin: 0;
+  color: #666;
+}
+
+.profile-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.friend-request-heading{
+  text-align: center;
+  margin-bottom: 20px;
+}

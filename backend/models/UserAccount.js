@@ -96,11 +96,19 @@ const userAccountInformationSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  friends: {
+  followers: {
     type: Array,
     default: [],
   },
-  friendRequests: {
+  following: {
+    type: Array,
+    default: [],
+  },
+  incomingfollowRequests: {
+    type: Array,
+    default: [],
+  },
+  sentfollowRequests: {
     type: Array,
     default: [],
   },
@@ -189,7 +197,8 @@ userAccountSchema.statics.signup = async function (
   username,
   dateOfBirth,
   monthOfBirth,
-  yearOfBirth
+  yearOfBirth,
+  profilePicture
 ) {
   // validation
   if (
@@ -227,6 +236,7 @@ userAccountSchema.statics.signup = async function (
     firstName,
     lastName,
     username,
+    profilePicture,
     userInformation: {
       dateOfBirth,
       monthOfBirth,

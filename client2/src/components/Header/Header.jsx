@@ -19,7 +19,6 @@ export default function Header() {
   const storedUserData = localStorage.getItem("user");
   let username = "";
   if (storedUserData) {
-    console.log("Inside");
     // Parse the JSON string back into a JavaScript object
     const userData = JSON.parse(storedUserData);
 
@@ -78,7 +77,7 @@ export default function Header() {
             </div>
             <div className="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
               <div className="d-flex nav-item mix-2 search-container">
-                <Search/>
+                <Search />
               </div>
               {user && (
                 <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
@@ -108,7 +107,10 @@ export default function Header() {
                     </Link>
                   </li>
                   <li className="d-flex nav-item">
-                    <Link to="/" className="nav-link">
+                    <Link
+                      to={`/displayFriendRequest/${username}`}
+                      className="nav-link"
+                    >
                       <FontAwesomeIcon
                         icon={faUserFriends}
                         size="xl"

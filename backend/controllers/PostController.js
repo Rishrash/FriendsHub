@@ -11,7 +11,6 @@ class PostController {
       post.user = user;
       // save post to db
       await post.save();
-
       const path = `friendsHub/${username}/postPictures`;
       let files = Object.values(req.files).flat();
       let url = "";
@@ -38,6 +37,24 @@ class PostController {
       return res.status(500).json({ message: error.message });
     }
   };
-}
 
+  static getPost = async (req, res) => {
+    console.log("Hello");
+    try {
+      const post = await Post.findById(req.params.postId).populate(
+        "user",
+        "firstName lastName username profilePicture"
+      );
+
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+
+      res.json(post);
+    } catch (error) {
+      console.error("Error fetching post:", error);
+      res.status(500).json({ message: "Error fetching post" });
+    }
+  };
+}
 export default PostController;
