@@ -13,12 +13,15 @@ class UserAccountController {
 
       const userId = user._id;
       const username = user.username;
+      const role = user.role;
       // create a token
       const token = jwt.sign({ _id: userId }, process.env.SECRET, {
         expiresIn: "3d",
       });
-
-      res.status(200).json({ userId, username, token });
+      if (user.isBlocked) {
+        res.status(400).json({ error: "Your Account has been Blocked" });
+      }
+      res.status(200).json({ userId, username, role, token });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -27,7 +30,7 @@ class UserAccountController {
   // signup a user
   static signupUser = async (req, res) => {
     console.log("Signup Called");
-    const { emailAddress, password, firstName, lastName, username, dob } =
+    const { emailAddress, password, firstName, lastName, username, dob, role } =
       req.body;
     const profilePicture =
       "https://res.cloudinary.com/dygst600u/image/upload/v1710214518/friendsHub/nvjd69xjdliflwdv2h6t.png";
@@ -43,6 +46,7 @@ class UserAccountController {
         firstName,
         lastName,
         username,
+        role,
         dateOfBirth,
         monthOfBirth,
         yearOfBirth,

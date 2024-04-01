@@ -18,12 +18,14 @@ export default function Header() {
   const { logout } = useLogout();
   const storedUserData = localStorage.getItem("user");
   let username = "";
+  let role = "";
   if (storedUserData) {
     // Parse the JSON string back into a JavaScript object
     const userData = JSON.parse(storedUserData);
 
     // Access individual properties
     username = userData.username;
+    role = userData.role;
   }
   const handleClick = () => {
     logout();
@@ -33,7 +35,6 @@ export default function Header() {
       <nav className="navbar fixed-top navbar-expand-lg">
         <div className="container">
           <Link to="#" className="navbar-brand fs-4">
-            {/* <img src="Icons/Logo.png" alt="LOGO" /> */}
             <div className="logo-container">
               <span className="logo-text">Friends</span>
               <span className="logo-text1">Hub</span>
@@ -76,76 +77,87 @@ export default function Header() {
               ></button>
             </div>
             <div className="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
-              <div className="d-flex nav-item mix-2 search-container">
-                <Search />
-              </div>
-              {user && (
-                <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
-                  <li className="d-flex nav-item mix-2">
-                    <Link
-                      to={`/displayUserProfile/${username}`}
-                      className="nav-link"
-                    >
-                      <FontAwesomeIcon
-                        icon={faUser}
-                        size="xl"
-                        style={{ color: "#212529" }}
-                      />
+              {user && role == "user" && (
+                <>
+                  <div className="d-flex nav-item mix-2 search-container">
+                    <Search />
+                  </div>
+
+                  <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
+                    <li className="d-flex nav-item mix-2">
+                      <Link
+                        to={`/displayUserProfile/${username}`}
+                        className="nav-link"
+                      >
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          size="xl"
+                          style={{ color: "#212529" }}
+                        />
+                      </Link>
+                    </li>
+                    <li className="d-flex nav-item mix-2">
+                      <Link
+                        to="/"
+                        className="nav-link active"
+                        aria-current="page"
+                      >
+                        <FontAwesomeIcon
+                          icon={faHouse}
+                          size="xl"
+                          style={{ color: "#212529" }}
+                        />
+                      </Link>
+                    </li>
+                    <li className="d-flex nav-item">
+                      <Link
+                        to={`/displayFriendRequest/${username}`}
+                        className="nav-link"
+                      >
+                        <FontAwesomeIcon
+                          icon={faUserFriends}
+                          size="xl"
+                          style={{ color: "#212529" }}
+                        />
+                      </Link>
+                    </li>
+                    <li className="d-flex nav-item mix-2">
+                      <Link to="/" className="nav-link">
+                        <FontAwesomeIcon
+                          icon={faComment}
+                          size="xl"
+                          style={{ color: "#212529" }}
+                        />
+                      </Link>
+                    </li>
+                    <li className="d-flex nav-item mix-2">
+                      <Link to="/" className="nav-link">
+                        <FontAwesomeIcon
+                          icon={faBell}
+                          size="xl"
+                          style={{ color: "#212529" }}
+                        />
+                      </Link>
+                    </li>
+                  </ul>
+                </>
+              )}
+              {user && role == "admin" && (
+                <ul className="navbar-nav justify-content-start align-item-center flex-grow-1 pe-3">
+                  <li className="d-flex nav-item align-self-end">
+                    <Link to="/admin/manageUser" className="nav-link">
+                      Manage User
                     </Link>
                   </li>
-                  <li className="d-flex nav-item mix-2">
-                    <Link
-                      to="/"
-                      className="nav-link active"
-                      aria-current="page"
-                    >
-                      <FontAwesomeIcon
-                        icon={faHouse}
-                        size="xl"
-                        style={{ color: "#212529" }}
-                      />
-                    </Link>
-                  </li>
-                  <li className="d-flex nav-item">
-                    <Link
-                      to={`/displayFriendRequest/${username}`}
-                      className="nav-link"
-                    >
-                      <FontAwesomeIcon
-                        icon={faUserFriends}
-                        size="xl"
-                        style={{ color: "#212529" }}
-                      />
-                    </Link>
-                  </li>
-                  <li className="d-flex nav-item mix-2">
-                    <Link to="/" className="nav-link">
-                      <FontAwesomeIcon
-                        icon={faComment}
-                        size="xl"
-                        style={{ color: "#212529" }}
-                      />
-                    </Link>
-                  </li>
-                  <li className="d-flex nav-item mix-2">
-                    <Link to="/" className="nav-link">
-                      <FontAwesomeIcon
-                        icon={faBell}
-                        size="xl"
-                        style={{ color: "#212529" }}
-                      />
+                  <li className="d-flex nav-item align-self-end">
+                    <Link to="/admin/managePost" className="nav-link">
+                      Manage Post
                     </Link>
                   </li>
                 </ul>
               )}
               {!user && (
-                <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3">
-                  <li className="d-flex nav-item mix-2"></li>
-                  <li className="d-flex nav-item mix-2"></li>
-                  <li className="d-flex nav-item"></li>
-                  <li className="d-flex nav-item mix-2"></li>
-                  <li className="d-flex nav-item mix-2"></li>
-                </ul>
+                <ul className="navbar-nav justify-content-center align-item-center flex-grow-1 pe-3"></ul>
               )}
               <div className="auth">
                 {user && (

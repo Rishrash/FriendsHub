@@ -18,6 +18,8 @@ import {
 } from "react-router-dom";
 import DisplayUserProfile from "./components/UserProfile/DisplayUserProfile/DisplayUserProfile.jsx";
 import Search from "./components/Search/Search.jsx";
+import ManagePost from "./components/Admin/ManagePost/ManagePost.jsx";
+import ManageUser from "./components/Admin/ManageUser/ManageUser.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +31,9 @@ const router = createBrowserRouter(
         path="/displayUserProfile/:userId"
         element={<DisplayUserProfile />}
       />
+
+      <Route path="/admin/manageUser" element={<ManageUser />} />
+      <Route path="/admin/managePost" element={<ManagePost />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route

@@ -13,7 +13,8 @@ export const useSignup = () => {
     firstName,
     lastName,
     username,
-    dob
+    dob,
+    userRole
   ) => {
     setIsLoading(true);
     setError(null);
@@ -28,6 +29,7 @@ export const useSignup = () => {
         lastName,
         username,
         dob,
+        role: userRole,
       }),
     });
     const json = await response.json();

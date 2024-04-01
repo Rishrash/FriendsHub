@@ -195,6 +195,7 @@ userAccountSchema.statics.signup = async function (
   firstName,
   lastName,
   username,
+  role,
   dateOfBirth,
   monthOfBirth,
   yearOfBirth,
@@ -202,10 +203,15 @@ userAccountSchema.statics.signup = async function (
 ) {
   // validation
   if (
-    (!emailAddress || !password || !firstName || !lastName || !username,
-    !dateOfBirth,
-    !monthOfBirth,
-    !yearOfBirth)
+    !emailAddress ||
+    !password ||
+    !firstName ||
+    !lastName ||
+    !username ||
+    !role ||
+    !dateOfBirth ||
+    !monthOfBirth ||
+    !yearOfBirth
   ) {
     throw Error("All fields must be filled");
   }
@@ -236,6 +242,7 @@ userAccountSchema.statics.signup = async function (
     firstName,
     lastName,
     username,
+    role,
     profilePicture,
     userInformation: {
       dateOfBirth,

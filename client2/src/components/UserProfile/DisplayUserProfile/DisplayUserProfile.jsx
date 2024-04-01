@@ -23,6 +23,7 @@ export default function DisplayUserProfile() {
     profilePicture: "",
     nickName: "",
     bio: "",
+    role: "",
     jobRole: "",
     workplace: "",
     education: "",
@@ -46,6 +47,7 @@ export default function DisplayUserProfile() {
   const [currentUserProfileData, setCurrentUserProfileData] = useState({
     followers: [],
     following: [],
+    role: "",
     incomingfollowRequests: [],
     sentfollowRequests: [],
   });
@@ -63,6 +65,7 @@ export default function DisplayUserProfile() {
       setCurrentUserProfileData({
         followers: responseData.userProfileData.userInformation.followers,
         following: responseData.userProfileData.userInformation.following,
+        role: responseData.userProfileData.role,
         incomingfollowRequests:
           responseData.userProfileData.userInformation.incomingfollowRequests,
         sentfollowRequests:
@@ -81,6 +84,7 @@ export default function DisplayUserProfile() {
         lastName: responseData.userProfileData.lastName,
         username: responseData.userProfileData.username,
         emailAddress: responseData.userProfileData.emailAddress,
+        role: responseData.userProfileData.role,
         profilePicture: responseData.userProfileData.profilePicture,
         nickName: responseData.userProfileData.userInformation.nickName,
         bio: responseData.userProfileData.userInformation.bio,
@@ -233,6 +237,7 @@ export default function DisplayUserProfile() {
       <div className="display-profile-container">
         <div className="display-profile-subcontainer">
           {!userProfileData.isMyProfile &&
+            userProfileData.role != "admin" &&
             currentUserProfileData.incomingfollowRequests.includes(
               displayedProfileUsername
             ) && (
@@ -287,46 +292,47 @@ export default function DisplayUserProfile() {
               {userProfileData.firstName} {userProfileData.lastName}
             </span>
             <p>{userProfileData.emailAddress}</p>
-            {!userProfileData.isMyProfile && (
-              <div>
-                {!currentUserProfileData.following.includes(
-                  displayedProfileUsername
-                ) &&
-                  !currentUserProfileData.sentfollowRequests.includes(
+            {!userProfileData.isMyProfile &&
+              userProfileData.role != "admin" && (
+                <div>
+                  {!currentUserProfileData.following.includes(
+                    displayedProfileUsername
+                  ) &&
+                    !currentUserProfileData.sentfollowRequests.includes(
+                      displayedProfileUsername
+                    ) && (
+                      <button
+                        className="btn btn-primary"
+                        onClick={sendFollowRequest}
+                      >
+                        Follow
+                      </button>
+                    )}
+                  {currentUserProfileData.following.includes(
+                    displayedProfileUsername
+                  ) && (
+                    <>
+                      <p className="btn">Following</p>
+                      <button
+                        className="btn btn-primary"
+                        onClick={unfollowExistingFollower}
+                      >
+                        Unfollow
+                      </button>
+                    </>
+                  )}
+                  {currentUserProfileData.sentfollowRequests.includes(
                     displayedProfileUsername
                   ) && (
                     <button
                       className="btn btn-primary"
-                      onClick={sendFollowRequest}
+                      onClick={cancelFollowRequest}
                     >
-                      Follow
+                      Cancel Request
                     </button>
                   )}
-                {currentUserProfileData.following.includes(
-                  displayedProfileUsername
-                ) && (
-                  <>
-                    <p className="btn">Following</p>
-                    <button
-                      className="btn btn-primary"
-                      onClick={unfollowExistingFollower}
-                    >
-                      Unfollow
-                    </button>
-                  </>
-                )}
-                {currentUserProfileData.sentfollowRequests.includes(
-                  displayedProfileUsername
-                ) && (
-                  <button
-                    className="btn btn-primary"
-                    onClick={cancelFollowRequest}
-                  >
-                    Cancel Request
-                  </button>
-                )}
-              </div>
-            )}
+                </div>
+              )}
           </div>
           <div className="display-userdetails-container">
             <div>

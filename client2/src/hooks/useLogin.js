@@ -17,8 +17,8 @@ export const useLogin = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ emailAddress, password }),
     });
+    // console.log("Json - " + response.role);
     const json = await response.json();
-    console.log("Json " + JSON.stringify(response));
     if (!response.ok) {
       setIsLoading(false);
       setError(json.error);
@@ -32,7 +32,11 @@ export const useLogin = () => {
 
       // update loading state
       setIsLoading(false);
-      navigateTo("/");
+      if (json.role == "user") {
+        navigateTo("/");
+      } else if (json.role == "admin") {
+        navigateTo("/signup");
+      }
     }
   };
 

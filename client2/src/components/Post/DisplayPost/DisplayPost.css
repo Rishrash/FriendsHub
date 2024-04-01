@@ -35,11 +35,10 @@ body {
 }
 
 .user-info h4 {
-  
   cursor: pointer;
   margin: 0;
   font-size: 16px;
-  transition: font-weight 0.3s ease; /* Adding a smooth transition effect */
+  transition: font-weight 0.3s ease;
 }
 
 .user-info h4:hover {
@@ -66,7 +65,7 @@ body {
 }
 
 .post-image:hover {
-  transform: scale(1.02); /* Scale the image by 10% on hover */
+  transform: scale(1.02);
 }
 
 .actions {

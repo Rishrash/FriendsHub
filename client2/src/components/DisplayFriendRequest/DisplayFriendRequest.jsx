@@ -11,10 +11,6 @@ const DisplayFriendRequest = () => {
   const [buttonClickCount, setButtonClickCount] = useState(0);
   const storedUserData = localStorage.getItem("user");
   let currentUsername = userId;
-  // if (storedUserData) {
-  //   const userData = JSON.parse(storedUserData);
-  //   currentUsername = userData.username;
-  // }
 
   const handleClick = () => {
     setButtonClickCount((prevCount) => prevCount + 1);
