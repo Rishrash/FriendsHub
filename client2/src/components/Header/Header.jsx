@@ -20,15 +20,22 @@ export default function Header() {
   let username = "";
   let role = "";
   if (storedUserData) {
-    // Parse the JSON string back into a JavaScript object
     const userData = JSON.parse(storedUserData);
-
+    // Parse the JSON string back into a JavaScript object
     // Access individual properties
+
     username = userData.username;
     role = userData.role;
   }
   const handleClick = () => {
     logout();
+  };
+  const handleChat = () => {
+    if(storedUserData){
+      const userData = JSON.parse(storedUserData);
+      const chatlink="http://localhost:3000/login/"+userData.token;
+      window.open(chatlink, '_blank');
+    }
   };
   return (
     <header className="header overflow-hidden">
@@ -121,14 +128,14 @@ export default function Header() {
                         />
                       </Link>
                     </li>
-                    <li className="d-flex nav-item mix-2">
-                      <Link to="/" className="nav-link">
+                    <li className="d-flex nav-item mix-2" >
+                      <a className="nav-link" onClick={handleChat}>
                         <FontAwesomeIcon
                           icon={faComment}
                           size="xl"
                           style={{ color: "#212529" }}
                         />
-                      </Link>
+                      </a>
                     </li>
                     <li className="d-flex nav-item mix-2">
                       <Link to="/" className="nav-link">
