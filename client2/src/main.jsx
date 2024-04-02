@@ -7,7 +7,7 @@ import UpdateUserProfile from "./components/UserProfile/UpdateUserProfile/Update
 import Login from "./components/Login/Login.jsx";
 import Signup from "./components/Signup/Signup.jsx";
 import PostDetail from "./components/Post/PostDetail/PostDetail.jsx";
-import DisplayFriendRequest from "./components/DisplayFriendRequest/DisplayFriendRequest.jsx";
+import DisplayFriendRequest from "./components/ManageFriendRequest/DisplayFriendRequest/DisplayFriendRequest.jsx";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 
 import {

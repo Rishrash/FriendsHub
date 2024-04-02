@@ -35,7 +35,7 @@ export const useLogin = () => {
       if (json.role == "user") {
         navigateTo("/");
       } else if (json.role == "admin") {
-        navigateTo("/signup");
+        navigateTo("/admin/managePost");
       }
     }
   };

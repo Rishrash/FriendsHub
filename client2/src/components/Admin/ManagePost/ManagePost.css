@@ -122,3 +122,8 @@ body {
   height:100px;
   width: 100%;
 }
+
+.manage-post-heading{
+  text-align: center;
+  margin-bottom: 50px;
+}

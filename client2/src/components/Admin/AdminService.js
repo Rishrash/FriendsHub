@@ -41,6 +41,33 @@ const AdminService = {
       throw error;
     }
   },
+
+  deleteReportsFromUserAccount: async (userId) => {
+    try {
+      const response = await axios.put(
+        `${apiUrl}/api/admin/deleteReportsFromUserAccount`,
+        {
+          userId,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting reports from user:", error);
+      throw error;
+    }
+  },
+
+  blockUserById: async (userId) => {
+    try {
+      const response = await axios.put(`${apiUrl}/api/admin/blockUserById`, {
+        userId,
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error blocking user by ID:", error);
+      throw error;
+    }
+  },
 };
 
 export default AdminService;

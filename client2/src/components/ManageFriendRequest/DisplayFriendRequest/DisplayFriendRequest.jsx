@@ -9,7 +9,6 @@ const DisplayFriendRequest = () => {
   const [userProfiles, setUserProfiles] = useState([]);
   const [message, setMessage] = useState("");
   const [buttonClickCount, setButtonClickCount] = useState(0);
-  const storedUserData = localStorage.getItem("user");
   let currentUsername = userId;
 
   const handleClick = () => {

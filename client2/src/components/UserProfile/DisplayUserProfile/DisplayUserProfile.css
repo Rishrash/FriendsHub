@@ -92,6 +92,12 @@ td{
   margin-bottom: 10px; 
 }
 
+.report-btn-container{
+  display: flex;
+  justify-content: end;
+  margin-right: 100px;
+}
+
 
 @media (max-width: 991px) {
   .display-profile-container{

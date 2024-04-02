@@ -2,39 +2,6 @@ import Post from "../models/Post.js";
 import UserAccount from "../models/UserAccount.js";
 
 class AdminController {
-  static reportPost = async (req, res) => {
-    const { reportComment, userId, postId } = req.body;
-
-    if (!postId || !reportComment || !userId) {
-      return res.status(400).json({ message: "Missing required fields" });
-    }
-
-    try {
-      const post = await Post.findByIdAndUpdate(
-        postId,
-        {
-          $push: {
-            reports: {
-              reportComment: reportComment,
-              reportBy: userId,
-              reportAt: new Date(),
-            },
-          },
-        },
-        { new: true }
-      );
-
-      if (!post) {
-        return res.status(404).json({ message: "Post not found" });
-      }
-
-      res.status(200).json({ message: "Report added successfully", post });
-    } catch (error) {
-      console.error("Error reporting the post: ", error);
-      res.status(500).json({ message: "Internal Server Error" });
-    }
-  };
-
   static getReportedPosts = async (req, res) => {
     try {
       const postsWithReports = await Post.find({
@@ -121,6 +88,78 @@ class AdminController {
       return res.status(200).json({ message: "Post blocked successfully" });
     } catch (error) {
       console.error("Error blocking post:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  };
+
+  static getReportedUsers = async (req, res) => {
+    try {
+      const usersWithReports = await UserAccount.find({
+        $expr: {
+          $gt: [{ $size: "$userInformation.reports" }, 0],
+        },
+      })
+        .find({ isBlocked: false })
+        .populate(
+          "userInformation.reports.reportBy",
+          "firstName lastName username profilePicture"
+        );
+
+      if (usersWithReports.length === 0) {
+        return res.status(404).json({ message: "No reported posts found" });
+      }
+
+      res.status(200).json(usersWithReports);
+    } catch (error) {
+      console.error("Error fetching users with reports: ", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  };
+
+  static blockUserById = async (req, res) => {
+    try {
+      const { userId } = req.body;
+
+      // Find the user by ID
+      const user = await UserAccount.findById(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Update the user's isBlocked property to true
+      user.isBlocked = true;
+
+      // Save the updated user
+      await user.save();
+
+      return res.status(200).json({ message: "User blocked successfully" });
+    } catch (error) {
+      console.error("Error blocking post:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  };
+
+  static deleteReportsFromUserAccount = async (req, res) => {
+    try {
+      const { userId } = req.body;
+
+      // Check if the user exists
+      const user = await UserAccount.findById(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Remove reports from the user account
+      user.userInformation.reports = [];
+
+      // Save the updated user account
+      await user.save();
+
+      return res.status(200).json({
+        message: "Reports deleted from the user account successfully",
+      });
+    } catch (error) {
+      console.error("Error deleting reports from user account:", error);
       return res.status(500).json({ error: "Internal server error" });
     }
   };

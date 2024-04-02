@@ -1,48 +1,133 @@
-import { useState } from "react";
-import { useLogin } from "../../../hooks/useLogin";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./ManageUser.css";
+import AdminService from "../AdminService.js";
 
 const ManageUser = () => {
-  const [emailAddress, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login, error, isLoading } = useLogin();
+  const [reportedUsers, setReportedUsers] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await login(emailAddress, password);
+  const deleteReports = async (userId) => {
+    try {
+      await AdminService.deleteReportsFromUserAccount(userId);
+      console.log("Reports removed from post successfully!");
+    } catch (error) {
+      console.error("Error deleting reports from post:", error);
+    }
   };
 
+  const blockUser = async (userId) => {
+    try {
+      await AdminService.blockUserById(userId);
+      console.log("Post blocked successfully!");
+    } catch (error) {
+      console.error("Error blocking post:", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchReportedUsers = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/admin/getReportedUsers"
+        );
+        setReportedUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching reported users:", error);
+      }
+    };
+
+    fetchReportedUsers();
+  }, []);
+
   return (
-    <form className="login" onSubmit={handleSubmit}>
-      <h3>Log In</h3>
-
-      <label>Email address:</label>
-      <input
-        type="email"
-        id="emailAddress"
-        onChange={(e) => setEmail(e.target.value)}
-        value={emailAddress}
-      />
-      <label>Password:</label>
-      <input
-        type="password"
-        id="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <div className="btn-container">
-        <button
-          className="btn btn-outline-primary"
-          id="login-btn"
-          disabled={isLoading}
-        >
-          Log in
-        </button>
-      </div>
-
-      {error && <div className="error">{error}</div>}
-    </form>
+    <div>
+      {reportedUsers.length === 0 ? (
+        <h2 className="manage-user-heading">No reported users found</h2>
+      ) : (
+        <>
+          <h2 className="manage-user-heading">Reported Users</h2>
+          <div className="reported-users-container">
+            {reportedUsers.map((user) => (
+              <div key={user._id} className="user-card">
+                <img
+                  src={user.profilePicture}
+                  alt="Profile"
+                  className="profile-picture"
+                />
+                <div className="user-details">
+                  <h2>{`${user.firstName} ${user.lastName}`}</h2>
+                  <p>{`Email: ${user.emailAddress}`}</p>
+                  <p>{`Username: @${user.username}`}</p>
+                  <h3>Reports:</h3>
+                  <div className="reports-list">
+                    {user.userInformation.reports.map((report, index) => (
+                      <div key={index} className="report">
+                        <img
+                          src={report.reportBy.profilePicture}
+                          alt="Reporter"
+                          className="reporter-picture"
+                        />
+                        <div className="report-details">
+                          <p>{`${report.reportBy.firstName} ${report.reportBy.lastName}`}</p>
+                          <p>
+                            Reported {calculateTimeDifference(report.reportAt)}{" "}
+                            ago
+                          </p>
+                          <p>{`Comment: ${report.reportComment}`}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="actions">
+                  <div className="action-btn">
+                    <button
+                      className="btn btn-outline-dark"
+                      onClick={() => blockUser(user._id)}
+                    >
+                      Block User
+                    </button>
+                  </div>
+                  <div className="action-btn">
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => deleteReports(user._id)}
+                    >
+                      Delete Reports
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   );
+};
+
+// Helper function to calculate time difference
+const calculateTimeDifference = (createdAt) => {
+  const now = new Date();
+  const postDate = new Date(createdAt);
+  const timeDifferenceInMilliseconds = now - postDate;
+
+  // Calculate time difference in hours
+  const timeDifferenceInHours = timeDifferenceInMilliseconds / (1000 * 60 * 60);
+
+  if (timeDifferenceInHours < 1) {
+    return `Less than 1 hour`;
+  } else if (timeDifferenceInHours < 24) {
+    // Less than 1 day, return hours
+    const roundedHours = Math.round(timeDifferenceInHours);
+    return `${roundedHours} ${roundedHours === 1 ? "hour" : "hours"}`;
+  } else {
+    // More than 1 day, return days
+    const timeDifferenceInDays = Math.floor(timeDifferenceInHours / 24);
+    return `${timeDifferenceInDays} ${
+      timeDifferenceInDays === 1 ? "day" : "days"
+    }`;
+  }
 };
 
 export default ManageUser;

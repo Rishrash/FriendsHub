@@ -480,6 +480,41 @@ class UserAccountController {
       return res.status(500).json({ error: "Internal server error" });
     }
   };
+
+  static reportUser = async (req, res) => {
+    const { reportComment, reportedByUserId, reportedUserId } = req.body;
+
+    if (!reportedByUserId || !reportComment || !reportedUserId) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    try {
+      const reportedUser = await UserAccount.findByIdAndUpdate(
+        reportedUserId,
+        {
+          $push: {
+            "userInformation.reports": {
+              reportComment: reportComment,
+              reportBy: reportedByUserId,
+              reportAt: new Date(),
+            },
+          },
+        },
+        { new: true }
+      );
+
+      if (!reportedUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res
+        .status(200)
+        .json({ message: "Report added successfully", reportedUser });
+    } catch (error) {
+      console.error("Error reporting the user: ", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  };
 }
 
 export default UserAccountController;

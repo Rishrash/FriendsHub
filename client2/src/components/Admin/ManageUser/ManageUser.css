@@ -1,13 +1,67 @@
-.login input{
-  background-color: rgb(238, 239, 245);
-  color:black;
-}
-.login{
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+.reported-users-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px 100px;
 }
 
-.btn-container{
+.user-card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 300px;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.user-details {
+  margin-top: 10px;
+}
+
+.reports-list {
+  margin-top: 10px;
+}
+
+.report {
+  border-bottom: 1px solid #ddd;
   display: flex;
-  justify-content: center;
+  padding: 10px 0;
+}
+
+.reporter-picture {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.report-details p {
+  margin: 0;
+}
+
+.manage-user-heading{
   text-align: center;
+  margin-bottom: 50px;
+}
+
+
+@media (max-width: 768px) {
+  .user-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 576px) {
+  .user-card {
+    width: calc(100% - 20px);
+  }
 }

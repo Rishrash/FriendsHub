@@ -30,5 +30,6 @@ router.get(
   "/getUserProfilesForIncommingFollowRequest/:username",
   UserAccountController.getUserProfilesForIncommingFollowRequest
 );
+router.put("/reportUser", UserAccountController.reportUser);
 
 export default router;

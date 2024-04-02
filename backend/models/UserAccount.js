@@ -96,6 +96,21 @@ const userAccountInformationSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  reports: [
+    {
+      reportComment: {
+        type: String,
+      },
+      reportBy: {
+        type: ObjectId,
+        ref: "UserAccount",
+      },
+      reportAt: {
+        type: Date,
+        default: new Date(),
+      },
+    },
+  ],
   followers: {
     type: Array,
     default: [],

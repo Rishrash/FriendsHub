@@ -11,11 +11,14 @@ export default function DisplayUserProfile() {
   const apiUrl = "http://localhost:8000";
   const storedUserData = localStorage.getItem("user");
   let currentUsername = "";
+  let currentUserId = "";
   if (storedUserData) {
     const userData = JSON.parse(storedUserData);
     currentUsername = userData.username;
+    currentUserId = userData.userId;
   }
   const [userProfileData, setUserProfileData] = useState({
+    userProfileId: "",
     firstName: "",
     lastName: "",
     username: "",
@@ -58,9 +61,7 @@ export default function DisplayUserProfile() {
 
   const fetchUserProfileOfCurrentUser = async (userId) => {
     try {
-      const response = await axios.get(
-        `${apiUrl}/getUserProfile/${currentUsername}`
-      );
+      const response = await axios.get(`${apiUrl}/getUserProfile/${userId}`);
       const responseData = response.data;
       setCurrentUserProfileData({
         followers: responseData.userProfileData.userInformation.followers,
@@ -80,6 +81,7 @@ export default function DisplayUserProfile() {
       const response = await axios.get(`${apiUrl}/getUserProfile/${userId}`);
       const responseData = response.data;
       setUserProfileData({
+        userProfileId: responseData.userProfileData._id,
         firstName: responseData.userProfileData.firstName,
         lastName: responseData.userProfileData.lastName,
         username: responseData.userProfileData.username,
@@ -227,6 +229,19 @@ export default function DisplayUserProfile() {
     }
   };
 
+  const handleReportClick = async () => {
+    try {
+      const response = await axios.put(`${apiUrl}/reportUser`, {
+        reportComment: "Reported",
+        reportedByUserId: currentUserId,
+        reportedUserId: userProfileData.userProfileId,
+      });
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error Reporting the post:", error);
+    }
+  };
+
   useEffect(() => {
     fetchUserProfileToDisplay(displayedProfileUsername);
     fetchUserProfileOfCurrentUser(currentUsername);
@@ -236,6 +251,16 @@ export default function DisplayUserProfile() {
     <>
       <div className="display-profile-container">
         <div className="display-profile-subcontainer">
+          {!userProfileData.isMyProfile && userProfileData.role != "admin" && (
+            <div className="report-btn-container">
+              <div>
+                <button className="btn" onClick={() => handleReportClick()}>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Report
+                </button>
+              </div>
+            </div>
+          )}
           {!userProfileData.isMyProfile &&
             userProfileData.role != "admin" &&
             currentUserProfileData.incomingfollowRequests.includes(
@@ -266,6 +291,7 @@ export default function DisplayUserProfile() {
                 </button>
               </div>
             )}
+
           <div className="profile-header">
             <div className="profile-picture-container">
               <img
@@ -312,7 +338,9 @@ export default function DisplayUserProfile() {
                     displayedProfileUsername
                   ) && (
                     <>
-                      <p className="btn">Following</p>
+                      <p className="">
+                        Following <i class="fa-solid fa-check"></i>
+                      </p>
                       <button
                         className="btn btn-primary"
                         onClick={unfollowExistingFollower}

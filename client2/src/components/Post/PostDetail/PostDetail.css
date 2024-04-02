@@ -1,7 +1,14 @@
+.post-detail{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
 .post-detail .card {
-  margin: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  margin: 0 auto;
+  border-bottom: none;
+  border-radius: none;
 }
 
 .post-detail .card-header {
@@ -30,4 +37,69 @@
   width: 100%;
   max-height: 400px;
   object-fit: cover;
+}
+
+.post-detail .like-btn,
+.post-detail .comment-btn {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+}
+
+.post-detail .like-btn:hover,
+.post-detail .comment-btn:hover {
+  background-color: #0056b3;
+}
+
+.post-detail .comments {
+  margin-top: 20px;
+ 
+  border-radius: 5px;
+
+
+}
+
+.post-detail .comment {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  background-color: #f8f8f8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail .comment .commentBy{
+  font-size: 14px;
+}
+.post-comment{
+  display: flex;
+}
+
+.post-comment{
+  display: flex;
+  
+}
+
+.post-comment input{
+  margin-left: 10px;
+  background-color: #f8f9fa;
+  color: black;
+}
+
+ .post-like-report{
+  display: flex;
+  justify-content: space-around;
+}
+
+.like-comment-count{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+  margin-bottom: 20px;
+  border-bottom: 0.8px solid rgb(58, 57, 57);
+  g
 }
