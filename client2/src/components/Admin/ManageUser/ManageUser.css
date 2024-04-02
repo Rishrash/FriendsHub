@@ -53,6 +53,14 @@
   margin-bottom: 50px;
 }
 
+.actions{
+  display: flex;
+  flex-direction: column;
+}
+
+.action-btn button{
+  width: 150px;
+}
 
 @media (max-width: 768px) {
   .user-card {

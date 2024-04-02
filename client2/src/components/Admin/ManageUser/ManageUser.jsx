@@ -5,10 +5,12 @@ import AdminService from "../AdminService.js";
 
 const ManageUser = () => {
   const [reportedUsers, setReportedUsers] = useState([]);
+  const [buttonClickCount, setButtonClickCount] = useState(0);
 
   const deleteReports = async (userId) => {
     try {
       await AdminService.deleteReportsFromUserAccount(userId);
+      setButtonClickCount((prevCount) => prevCount + 1);
       console.log("Reports removed from post successfully!");
     } catch (error) {
       console.error("Error deleting reports from post:", error);
@@ -18,6 +20,7 @@ const ManageUser = () => {
   const blockUser = async (userId) => {
     try {
       await AdminService.blockUserById(userId);
+      setButtonClickCount((prevCount) => prevCount + 1);
       console.log("Post blocked successfully!");
     } catch (error) {
       console.error("Error blocking post:", error);
@@ -35,9 +38,8 @@ const ManageUser = () => {
         console.error("Error fetching reported users:", error);
       }
     };
-
     fetchReportedUsers();
-  }, []);
+  }, [buttonClickCount]);
 
   return (
     <div>
@@ -58,7 +60,7 @@ const ManageUser = () => {
                   <h2>{`${user.firstName} ${user.lastName}`}</h2>
                   <p>{`Email: ${user.emailAddress}`}</p>
                   <p>{`Username: @${user.username}`}</p>
-                  <h3>Reports:</h3>
+                  <h5>Reports:</h5>
                   <div className="reports-list">
                     {user.userInformation.reports.map((report, index) => (
                       <div key={index} className="report">
@@ -85,12 +87,12 @@ const ManageUser = () => {
                       className="btn btn-outline-dark"
                       onClick={() => blockUser(user._id)}
                     >
-                      Block User
+                      Block
                     </button>
                   </div>
                   <div className="action-btn">
                     <button
-                      className="btn btn-outline-danger"
+                      className="btn-delete-reports btn btn-outline-dark"
                       onClick={() => deleteReports(user._id)}
                     >
                       Delete Reports

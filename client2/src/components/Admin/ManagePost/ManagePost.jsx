@@ -7,10 +7,12 @@ import AdminService from "../AdminService.js";
 const ManagePost = () => {
   const apiUrl = "http://localhost:8000";
   const [posts, setPosts] = useState([]);
+  const [buttonClickCount, setButtonClickCount] = useState(0);
 
   const blockPost = async (postId) => {
     try {
       await AdminService.blockPostById(postId);
+      setButtonClickCount((prevCount) => prevCount + 1);
       console.log("Post blocked successfully!");
     } catch (error) {
       console.error("Error blocking post:", error);
@@ -20,6 +22,7 @@ const ManagePost = () => {
   const deletePost = async (postId) => {
     try {
       await AdminService.deletePostById(postId);
+      setButtonClickCount((prevCount) => prevCount + 1);
       console.log("Post deleted successfully!");
     } catch (error) {
       console.error("Error deleting post:", error);
@@ -29,6 +32,7 @@ const ManagePost = () => {
   const removeReportsFromPost = async (postId) => {
     try {
       await AdminService.deleteReportsFromPost(postId);
+      setButtonClickCount((prevCount) => prevCount + 1);
       console.log("Reports removed from post successfully!");
     } catch (error) {
       console.error("Error deleting reports from post:", error);
@@ -49,7 +53,7 @@ const ManagePost = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [buttonClickCount]);
 
   return (
     <div>

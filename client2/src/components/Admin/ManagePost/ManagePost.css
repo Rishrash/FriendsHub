@@ -123,6 +123,11 @@ body {
   width: 100%;
 }
 
+.actions{
+  display: flex;
+  flex-direction: row;
+}
+
 .manage-post-heading{
   text-align: center;
   margin-bottom: 50px;
