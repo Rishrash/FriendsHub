@@ -4,7 +4,7 @@ import axios from "axios";
 import "./PostDetail.css";
 
 const PostDetail = () => {
-  const apiUrl = "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const { postId } = useParams();
   const [post, setPost] = useState(null);
   const [userId, setUserId] = useState(null);
@@ -20,7 +20,7 @@ const PostDetail = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/getPost/${postId}`);
+        const response = await fetch(`${apiUrl}/getPost/${postId}`);
         const data = await response.json();
         setPost(data);
         setUserId(userData.userId);

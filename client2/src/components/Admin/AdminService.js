@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:8000";
+const apiUrl = import.meta.env.VITE_API_HOST;
 
 const AdminService = {
   deleteReportsFromPost: async (postId) => {
@@ -65,6 +65,18 @@ const AdminService = {
       return response.data;
     } catch (error) {
       console.error("Error blocking user by ID:", error);
+      throw error;
+    }
+  },
+
+  getReportedPosts: async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/api/admin/getReportedPosts`);
+      const data = await response.data;
+      console.log("Data - " + data);
+      return data;
+    } catch (error) {
+      console.error("Error fetching posts:", error);
       throw error;
     }
   },

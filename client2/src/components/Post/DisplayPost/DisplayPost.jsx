@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import "./DisplayPost.css";
 
 const DisplayPost = () => {
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:8000/getPosts");
+        const response = await fetch(`${apiUrl}//getPosts`);
         const data = await response.json();
         setPosts(data);
       } catch (error) {
@@ -55,7 +56,7 @@ const DisplayPost = () => {
                   />
                 )}
               </div>
-              <div className="actions">
+              <div className="actions" style={{ flexDirection: "row" }}>
                 <div className="action-btn">
                   <i className="fas fa-thumbs-up"></i> Like
                 </div>
@@ -63,7 +64,8 @@ const DisplayPost = () => {
                   <i className="fas fa-comment"></i> Comment
                 </div>
                 <div className="action-btn">
-                  <i className="fas fa-share"></i> Share
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Report
                 </div>
               </div>
             </div>

@@ -3,6 +3,7 @@ import "./CreatePost.css";
 import axios from "axios";
 
 const CreatePost = () => {
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const [textDescription, setTextDescription] = useState("");
   const [visibility, setVisibility] = useState("public");
   const [selectedImageToPreview, setSelectedImageToPreview] = useState(null);
@@ -59,15 +60,11 @@ const CreatePost = () => {
       formData.append("username", username);
       formData.append("image", selectedImage);
 
-      const response = await axios.post(
-        "http://localhost:8000/createPost",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${apiUrl}/createPost`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log("Post created successfully:", response.data);
       setErrorMessage("");
