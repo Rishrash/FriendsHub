@@ -61,7 +61,7 @@ export default function UpdateUserProfile() {
     try {
       // Send a POST request to update user details
       const response = await axios.post(
-        `${apiUrl}//updateUserDetails`,
+        `${apiUrl}/updateUserDetails`,
         formData
       );
 

@@ -9,7 +9,7 @@ const DisplayPost = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${apiUrl}//getPosts`);
+        const response = await fetch(`${apiUrl}/getPosts`);
         const data = await response.json();
         setPosts(data);
       } catch (error) {
