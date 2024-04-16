@@ -32,7 +32,10 @@ export const sendMessage = async (req, res) => {
 		// await newMessage.save();
 
 		// this will run in parallel
-		await Promise.all([conversation.save(), newMessage.save()]);
+		console.log(message);
+		if(message!="@rfvc!"){
+			await Promise.all([conversation.save(), newMessage.save()]);
+		}
 
 		// SOCKET IO FUNCTIONALITY WILL GO HERE
 		const receiverSocketId = getReceiverSocketId(receiverId);

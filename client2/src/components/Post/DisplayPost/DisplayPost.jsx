@@ -56,7 +56,7 @@ const DisplayPost = () => {
                   />
                 )}
               </div>
-              <div className="actions" style={{ flexDirection: "row" }}>
+              <div className="actions">
                 <div className="action-btn">
                   <i className="fas fa-thumbs-up"></i> Like
                 </div>
@@ -64,8 +64,7 @@ const DisplayPost = () => {
                   <i className="fas fa-comment"></i> Comment
                 </div>
                 <div className="action-btn">
-                  <i class="fa-solid fa-circle-exclamation"></i>
-                  Report
+                  <i className="fas fa-share"></i> Share
                 </div>
               </div>
             </div>

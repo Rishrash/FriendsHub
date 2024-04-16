@@ -8,9 +8,7 @@ import Validate from "./pages/check/Validate";
 
 function App() {
 	const { authUser } = useAuthContext();
-	console.log(useAuthContext().toString());
-	console.log("     ");
-	console.log(authUser);
+	//console.log(authUser);
 	return (
 		<div className='p-4 h-screen flex items-center justify-center'>
 			<Routes>
