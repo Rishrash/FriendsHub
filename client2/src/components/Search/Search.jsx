@@ -4,6 +4,7 @@ import "./Search.css";
 import SearchResult from "./SearchResult";
 
 const Search = () => {
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
@@ -25,8 +26,8 @@ const Search = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("http://localhost:8000/try", {
-        params: { q: searchQuery }
+      const response = await axios.get(`${apiUrl}/try`, {
+        params: { q: searchQuery },
       });
       setSearchResults(response.data);
       setShowResults(true);
@@ -38,8 +39,8 @@ const Search = () => {
   const suggest = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("http://localhost:8000/search", {
-        params: { q: searchQuery }
+      const response = await axios.get(`${apiUrl}/search`, {
+        params: { q: searchQuery },
       });
       setSearchResults(response.data);
       setShowResults(true);

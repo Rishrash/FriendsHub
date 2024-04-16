@@ -3,6 +3,7 @@ import { useAuthContext } from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
 
 export const useSignup = () => {
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const navigateTo = useNavigate();
@@ -19,7 +20,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:8000/user/signup", {
+    const response = await fetch(`${apiUrl}/user/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

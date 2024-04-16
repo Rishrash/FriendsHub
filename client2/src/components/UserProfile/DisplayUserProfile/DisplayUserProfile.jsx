@@ -8,7 +8,7 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import DisplayPost from "../../Post/DisplayPost/DisplayPost";
 
 export default function DisplayUserProfile() {
-  const apiUrl = "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const storedUserData = localStorage.getItem("user");
   let currentUsername = "";
   let currentUserId = "";

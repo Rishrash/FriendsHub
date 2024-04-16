@@ -5,7 +5,6 @@ import "./ManagePost.css";
 import AdminService from "../AdminService.js";
 
 const ManagePost = () => {
-  const apiUrl = "http://localhost:8000";
   const [posts, setPosts] = useState([]);
   const [buttonClickCount, setButtonClickCount] = useState(0);
 
@@ -42,10 +41,7 @@ const ManagePost = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(
-          `${apiUrl}/api/admin/getReportedPosts`
-        );
-        const data = await response.data;
+        const data = await AdminService.getReportedPosts();
         setPosts(data);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -152,6 +148,7 @@ const ManagePost = () => {
                       Delete
                     </button>
                   </div>
+                  `x`
                   <div className="action-btn">
                     <button
                       className="btn btn-outline-primary"

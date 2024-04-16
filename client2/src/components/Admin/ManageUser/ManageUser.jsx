@@ -4,6 +4,7 @@ import "./ManageUser.css";
 import AdminService from "../AdminService.js";
 
 const ManageUser = () => {
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const [reportedUsers, setReportedUsers] = useState([]);
   const [buttonClickCount, setButtonClickCount] = useState(0);
 
@@ -31,7 +32,7 @@ const ManageUser = () => {
     const fetchReportedUsers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/admin/getReportedUsers"
+          `${apiUrl}/api/admin/getReportedUsers`
         );
         setReportedUsers(response.data);
       } catch (error) {

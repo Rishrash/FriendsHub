@@ -4,7 +4,7 @@ import axios from "axios";
 import "./DisplayFriendRequest.css";
 
 const DisplayFriendRequest = () => {
-  const apiUrl = "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_HOST;
   const { userId } = useParams();
   const [userProfiles, setUserProfiles] = useState([]);
   const [message, setMessage] = useState("");
@@ -46,7 +46,7 @@ const DisplayFriendRequest = () => {
     const fetchUserProfiles = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/getUserProfilesForIncommingFollowRequest/${currentUsername}`
+          `${apiUrl}/getUserProfilesForIncommingFollowRequest/${currentUsername}`
         );
         setUserProfiles(response.data);
       } catch (error) {
