@@ -116,7 +116,7 @@ const PostDetail = () => {
                 className="btn"
                 onClick={() => handleLikeClick(userId, post._id)}
               >
-                <i className="fas fa-thumbs-up"></i> Like
+                <i className="fas fa-thumbs-up"></i> {" "}Like
               </button>
             </div>
             <div>
@@ -125,7 +125,7 @@ const PostDetail = () => {
                 onClick={() => handleReportClick(userId, post._id)}
               >
                 <i class="fa-solid fa-circle-exclamation"></i>
-                Report
+                {" "} Report
               </button>
             </div>
           </div>

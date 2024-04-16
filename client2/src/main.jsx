@@ -20,11 +20,13 @@ import DisplayUserProfile from "./components/UserProfile/DisplayUserProfile/Disp
 import Search from "./components/Search/Search.jsx";
 import ManagePost from "./components/Admin/ManagePost/ManagePost.jsx";
 import ManageUser from "./components/Admin/ManageUser/ManageUser.jsx";
+import Chat from "./pages/Chat/Chat.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Home />} />
+      <Route path='/chat' element={ <Chat /> } />
       <Route path="/postDetail/:postId" element={<PostDetail />} />
       <Route path="updateUserProfile/:userId" element={<UpdateUserProfile />} />
       <Route
