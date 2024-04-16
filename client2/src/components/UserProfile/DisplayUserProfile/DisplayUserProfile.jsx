@@ -318,6 +318,24 @@ export default function DisplayUserProfile() {
               {userProfileData.firstName} {userProfileData.lastName}
             </span>
             <p>{userProfileData.emailAddress}</p>
+
+            <div className="followers-following-container">
+              <Link
+                to={`/followersAndFollowings/${userProfileData.username}/follower`}
+              >
+                <p className="followers-following">
+                  Followers: {userProfileData.followers.length}
+                </p>
+              </Link>
+              <Link
+                to={`/followersAndFollowings/${userProfileData.username}/following`}
+              >
+                <p className="followers-following">
+                  Following: {userProfileData.following.length}
+                </p>
+              </Link>
+            </div>
+
             {!userProfileData.isMyProfile &&
               userProfileData.role != "admin" && (
                 <div>

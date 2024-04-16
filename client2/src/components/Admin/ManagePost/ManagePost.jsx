@@ -148,7 +148,6 @@ const ManagePost = () => {
                       Delete
                     </button>
                   </div>
-                  `x`
                   <div className="action-btn">
                     <button
                       className="btn btn-outline-primary"

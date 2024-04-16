@@ -26,6 +26,10 @@ router.put(
   "/unfollowExistingFollower",
   UserAccountController.unfollowExistingFollower
 );
+router.post(
+  "/getFollowersOrFollowingUserProfiles/:username",
+  UserAccountController.getFollowersOrFollowingUserProfiles
+);
 router.get(
   "/getUserProfilesForIncommingFollowRequest/:username",
   UserAccountController.getUserProfilesForIncommingFollowRequest

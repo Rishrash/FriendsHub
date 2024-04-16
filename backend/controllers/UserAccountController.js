@@ -135,6 +135,40 @@ class UserAccountController {
     }
   };
 
+  static getFollowersOrFollowingUserProfiles = async (req, res) => {
+    try {
+      const { username } = req.params;
+      const { listType } = req.body;
+      const userProfile = await UserAccount.findOne({ username });
+      if (!userProfile) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      let usernames = [];
+      if (listType == "follower") {
+        usernames = userProfile.userInformation.followers;
+      } else if (listType == "following") {
+        usernames = userProfile.userInformation.following;
+      }
+
+      if (!usernames || usernames.length === 0) {
+        return res.status(400).json({ message: "No usernames provided" });
+      }
+
+      const userProfiles = await UserAccount.find({
+        username: { $in: usernames },
+      });
+
+      if (userProfiles.length === 0) {
+        return res.status(404).json({ message: "No users found" });
+      }
+
+      res.json({ userProfileData: userProfiles });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+
   static updateUserProfilePicture = async (req, res) => {
     try {
       const { path, username } = req.body;

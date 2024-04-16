@@ -20,6 +20,7 @@ import DisplayUserProfile from "./components/UserProfile/DisplayUserProfile/Disp
 import Search from "./components/Search/Search.jsx";
 import ManagePost from "./components/Admin/ManagePost/ManagePost.jsx";
 import ManageUser from "./components/Admin/ManageUser/ManageUser.jsx";
+import FollowerAndFollowingList from "./components/UserProfile/FollowerAndFollowingList/FollowerAndFollowingList.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,7 +32,10 @@ const router = createBrowserRouter(
         path="/displayUserProfile/:userId"
         element={<DisplayUserProfile />}
       />
-
+      <Route
+        path="/followersAndFollowings/:userId/:listType"
+        element={<FollowerAndFollowingList />}
+      />
       <Route path="/admin/manageUser" element={<ManageUser />} />
       <Route path="/admin/managePost" element={<ManagePost />} />
       <Route path="/login" element={<Login />} />
@@ -40,11 +44,6 @@ const router = createBrowserRouter(
         path="/displayFriendRequest/:userId"
         element={<DisplayFriendRequest />}
       />
-
-      {/* <Route
-        path="/signup"
-        element={!user ? <Signup /> : <Navigate to="/" />}
-      /> */}
     </Route>
   )
 );
