@@ -4,7 +4,7 @@ import MessageSkeleton from "../skeletons/MessageSkeleton";
 import Message from "./Message";
 import useListenMessages from "../../hooks/useListenMessages";
 
-const Messages = ({acceptVideoCall}) => {
+const Messages = () => {
 	const { messages, loading } = useGetMessages();
 	useListenMessages();
 	const lastMessageRef = useRef();
@@ -21,7 +21,7 @@ const Messages = ({acceptVideoCall}) => {
 				messages.length > 0 &&
 				messages.map((message) => (
 					<div key={message._id} ref={lastMessageRef}>
-						<Message message={message} acceptVideoCall={acceptVideoCall} />
+						<Message message={message} />
 					</div>
 				))}
 
