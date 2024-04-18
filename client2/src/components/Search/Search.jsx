@@ -4,7 +4,7 @@ import "./Search.css";
 import SearchResult from "./SearchResult";
 
 const Search = () => {
-  const apiUrl = import.meta.env.VITE_API_HOST;
+  const apiUrl = "https://friendshub-0y8a.onrender.com";
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);

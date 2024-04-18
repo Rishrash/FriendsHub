@@ -17,7 +17,7 @@ export default function DisplayUserProfile() {
     }
   }, []);
 
-  const apiUrl = import.meta.env.VITE_API_HOST;
+  const apiUrl = "https://friendshub-0y8a.onrender.com";
   const storedUserData = localStorage.getItem("user");
   let currentUsername = "";
   let currentUserId = "";

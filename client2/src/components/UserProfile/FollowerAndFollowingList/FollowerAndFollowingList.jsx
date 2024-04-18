@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function FollowerAndFollowingList() {
-  const apiUrl = import.meta.env.VITE_API_HOST;
+  const apiUrl = "https://friendshub-0y8a.onrender.com";
   const [userProfiles, setUserProfiles] = useState([]);
   const { userId, listType } = useParams();
   useEffect(() => {

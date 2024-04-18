@@ -13,7 +13,7 @@ const PostDetail = () => {
     }
   }, []);
 
-  const apiUrl = import.meta.env.VITE_API_HOST;
+  const apiUrl = "https://friendshub-0y8a.onrender.com";
   const { postId } = useParams();
   const [post, setPost] = useState(null);
   const [userId, setUserId] = useState(null);
@@ -125,7 +125,7 @@ const PostDetail = () => {
                 className="btn"
                 onClick={() => handleLikeClick(userId, post._id)}
               >
-                <i className="fas fa-thumbs-up"></i> {" "}Like
+                <i className="fas fa-thumbs-up"></i> Like
               </button>
             </div>
             <div>
@@ -133,8 +133,7 @@ const PostDetail = () => {
                 className="btn"
                 onClick={() => handleReportClick(userId, post._id)}
               >
-                <i class="fa-solid fa-circle-exclamation"></i>
-                {" "} Report
+                <i class="fa-solid fa-circle-exclamation"></i> Report
               </button>
             </div>
           </div>

@@ -13,7 +13,7 @@ export default function UpdateUserProfile() {
     }
   }, []);
 
-  const apiUrl = import.meta.env.VITE_API_HOST;
+  const apiUrl = "https://friendshub-0y8a.onrender.com";
   const [formData, setFormData] = useState({
     nickName: "",
     bio: "",

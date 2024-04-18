@@ -12,7 +12,7 @@ const CreatePost = () => {
     }
   }, []);
 
-  const apiUrl = import.meta.env.VITE_API_HOST;
+  const apiUrl = "https://friendshub-0y8a.onrender.com";
   const [textDescription, setTextDescription] = useState("");
   const [visibility, setVisibility] = useState("public");
   const [selectedImageToPreview, setSelectedImageToPreview] = useState(null);

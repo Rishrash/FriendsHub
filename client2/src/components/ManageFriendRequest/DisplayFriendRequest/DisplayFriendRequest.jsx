@@ -13,7 +13,7 @@ const DisplayFriendRequest = () => {
     }
   }, []);
 
-  const apiUrl = import.meta.env.VITE_API_HOST;
+  const apiUrl = "https://friendshub-0y8a.onrender.com";
   const { userId } = useParams();
   const [userProfiles, setUserProfiles] = useState([]);
   const [message, setMessage] = useState("");
