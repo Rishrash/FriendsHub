@@ -12,7 +12,6 @@ export const SocketContextProvider = ({ children }) => {
 	const [socket, setSocket] = useState(null);
 	const [onlineUsers, setOnlineUsers] = useState([]);
 	const { authUser } = useAuthContext();
-	console.log(authUser);
 	useEffect(() => {
 		if (authUser) {
 			const socket = io("http://localhost:5000", {

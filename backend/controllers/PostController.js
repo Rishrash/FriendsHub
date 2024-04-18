@@ -29,7 +29,8 @@ class PostController {
 
   static getPosts = async (req, res) => {
     try {
-      const posts = await Post.find()
+      const posts = await Post
+        .find({ isBlocked: false })
         .populate("user", "firstName lastName username profilePicture")
         .sort({ createdAt: -1 });
       res.json(posts);

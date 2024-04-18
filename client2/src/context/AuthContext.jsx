@@ -1,37 +1,40 @@
-import { createContext, useReducer, useEffect } from 'react'
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
-export const AuthContext = createContext()
+// Define the merged AuthContext
+export const AuthContext = createContext();
 
+// Define the reducer for managing authentication state
 export const authReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
-      return { user: action.payload }
+      return { authUser: action.payload };
     case 'LOGOUT':
-      return { user: null }
+      return { authUser: null };
     default:
-      return state
+      return state;
   }
-}
+};
+
+export const useAuthContext = () => {
+  return useContext(AuthContext);
+};
 
 export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { 
-    user: null
-  })
+  const [state, dispatch] = useReducer(authReducer, {
+    authUser: JSON.parse(localStorage.getItem('user')) || null,
+  });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    localStorage.setItem('user', JSON.stringify(state.authUser));
+  }, [state.authUser]);
 
-    if (user) {
-      dispatch({ type: 'LOGIN', payload: user }) 
-    }
-  }, [])
+  useEffect(() => {
+    console.log('AuthContext state:', state);
+  }, [state]);
 
-  console.log('AuthContext state:', state)
-  
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
-      { children }
+      {children}
     </AuthContext.Provider>
-  )
-
-}
+  );
+};
