@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./ManagePost.css";
 import AdminService from "../AdminService.js";
 
 const ManagePost = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./ManagePostdark.css");
+    } else {
+      import("./ManagePost.css");
+    }
+  }, []);
+
   const [posts, setPosts] = useState([]);
   const [buttonClickCount, setButtonClickCount] = useState(0);
 

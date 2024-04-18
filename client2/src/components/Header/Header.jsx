@@ -1,5 +1,3 @@
-import React from "react";
-import "./Header.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,12 +6,33 @@ import {
   faUserFriends,
   faComment,
   faBell,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
 import Search from "../Search/Search";
+import { useEffect, useState } from "react";
+// localStorage.setItem("theme","dark");
+if (!localStorage.getItem("theme")) {
+  localStorage.setItem("theme", "dark");
+}
 
 export default function Header() {
+  const [icon, setIcon] = useState(null);
+
+  // important do not delete
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      setIcon(faMoon);
+      import("./headerdark.css");
+    } else {
+      setIcon(faSun);
+      import("./header.css");
+    }
+  }, []);
+
   const { user } = useAuthContext();
   const { logout } = useLogout();
   const storedUserData = localStorage.getItem("user");
@@ -31,11 +50,23 @@ export default function Header() {
     logout();
   };
   const handleChat = () => {
-    if(storedUserData){
+    if (storedUserData) {
       const userData = JSON.parse(storedUserData);
-      const chatlink="http://localhost:3000/login/"+userData.token;
-      window.open(chatlink, '_blank');
+      const chatlink = "http://localhost:3000/login/" + userData.token;
+      window.open(chatlink, "_blank");
     }
+  };
+
+  //to change theme
+  const changeTheme = () => {
+    if (localStorage.getItem("theme") == "dark") {
+      setIcon(faSun);
+      localStorage.setItem("theme", "light");
+    } else {
+      setIcon(faMoon);
+      localStorage.setItem("theme", "dark");
+    }
+    window.location.reload();
   };
   return (
     <header className="header overflow-hidden">
@@ -97,9 +128,9 @@ export default function Header() {
                         className="nav-link"
                       >
                         <FontAwesomeIcon
+                          className="icon"
                           icon={faUser}
                           size="xl"
-                          style={{ color: "#212529" }}
                         />
                       </Link>
                     </li>
@@ -110,9 +141,9 @@ export default function Header() {
                         aria-current="page"
                       >
                         <FontAwesomeIcon
+                          className="icon"
                           icon={faHouse}
                           size="xl"
-                          style={{ color: "#212529" }}
                         />
                       </Link>
                     </li>
@@ -122,27 +153,27 @@ export default function Header() {
                         className="nav-link"
                       >
                         <FontAwesomeIcon
+                          className="icon"
                           icon={faUserFriends}
                           size="xl"
-                          style={{ color: "#212529" }}
                         />
                       </Link>
                     </li>
-                    <li className="d-flex nav-item mix-2" >
+                    <li className="d-flex nav-item mix-2">
                       <a className="nav-link" onClick={handleChat}>
                         <FontAwesomeIcon
+                          className="icon"
                           icon={faComment}
                           size="xl"
-                          style={{ color: "#212529" }}
                         />
                       </a>
                     </li>
                     <li className="d-flex nav-item mix-2">
                       <Link to="/" className="nav-link">
                         <FontAwesomeIcon
+                          className="icon"
                           icon={faBell}
                           size="xl"
-                          style={{ color: "#212529" }}
                         />
                       </Link>
                     </li>
@@ -169,6 +200,12 @@ export default function Header() {
               <div className="auth">
                 {user && (
                   <div>
+                    <button
+                      onClick={changeTheme}
+                      style={{ backgroundColor: "inherit", border: 0 }}
+                    >
+                      <FontAwesomeIcon className="icon" icon={icon} size="xl" />
+                    </button>
                     <span>{user.email}</span>
                     <button
                       className="btn btn-logout btn-outline-primary"
@@ -180,6 +217,12 @@ export default function Header() {
                 )}
                 {!user && (
                   <>
+                    <button
+                      onClick={changeTheme}
+                      style={{ backgroundColor: "inherit", border: 0 }}
+                    >
+                      <FontAwesomeIcon className="icon" icon={icon} size="xl" />
+                    </button>
                     <button className="btn btn-primary btn-login">
                       <Link className="link" to="/login">
                         Login

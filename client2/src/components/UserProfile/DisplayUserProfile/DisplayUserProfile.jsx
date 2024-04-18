@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
-import "./DisplayUserProfile.css";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +7,16 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import DisplayPost from "../../Post/DisplayPost/DisplayPost";
 
 export default function DisplayUserProfile() {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./DisplayUserProfiledark.css");
+    } else {
+      import("./DisplayUserProfile.css");
+    }
+  }, []);
+
   const apiUrl = import.meta.env.VITE_API_HOST;
   const storedUserData = localStorage.getItem("user");
   let currentUsername = "";

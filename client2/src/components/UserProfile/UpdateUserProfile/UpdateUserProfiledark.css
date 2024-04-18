@@ -1,0 +1,54 @@
+.update-profile-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .update-profile-subcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #15202b; /* Dark background color */
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 0;
+    box-shadow: 0 0 20px rgb(46, 64, 77); /* Adjusted box shadow color */
+    margin-bottom: 20px;
+  }
+  
+  .update-profile-form {
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .update-profile-form label {
+    color: white;/* Light text color for labels */
+  }
+  
+  .update-profile-form input[type="text"],
+  .update-profile-form input[type="email"],
+  .update-profile-form textarea {
+    background-color: #15202b; /* Dark background color for input fields */
+    color: white; /* Light text color for input fields */
+    border: 1px solid rgba(255, 255, 255, 0.3);/* Adjusted border color for input fields */
+  }
+  
+  .update-profile-form input[type="text"]:focus,
+  .update-profile-form input[type="email"]:focus,
+  .update-profile-form textarea:focus {
+    border-color: rgba(255, 255, 255, 0.3);/* Light blue color for focused input fields */
+  }
+  
+  .update-profile-form input[type="submit"] {
+    background-color: #15202b; /* Light blue color for submit button */
+    color: white; /* Light text color for submit button */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .update-profile-form input[type="submit"]:hover {
+    background-color: #15202b; /* Light blue color for submit button on hover */
+  }
+  

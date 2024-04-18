@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./DisplayPost.css";
 
 const DisplayPost = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./DisplayPostdark.css");
+    } else {
+      import("./DisplayPost.css");
+    }
+  }, []);
+
   const apiUrl = import.meta.env.VITE_API_HOST;
   const [posts, setPosts] = useState([]);
 

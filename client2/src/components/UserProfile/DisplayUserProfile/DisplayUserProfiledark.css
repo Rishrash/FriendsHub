@@ -1,0 +1,115 @@
+.display-profile-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .display-profile-subcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #15202b; /* Dark background color */
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    box-shadow: 0 0 20px rgb(46, 64, 77); /* Adjusted box shadow color */
+    margin-bottom: 20px;
+  }
+  
+  .fullName {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: x-large;
+    color: white; /* Light text color for full name */
+  }
+  
+  a.edit-image {
+    cursor: pointer;
+    color: white; /* Light blue color for links */
+  }
+  
+  a.edit-image:hover {
+    color: #64b5f6; /* Light blue color on hover */
+  }
+  
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+  
+  .profile-picture {
+    width: auto;
+    height: 5em;
+    border-radius: 50%;
+  }
+  
+  .display-userdetails-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10px;
+  }
+  
+  .profile-header {
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Adjusted border color */
+  }
+  
+  .table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  
+  td {
+    height: 40px;
+    width: 100%;
+    text-align: left;
+    color: white; /* Light text color for table data */
+  }
+  
+  .data {
+    width: 300px;
+    text-align: center;
+  }
+  
+  .followRequestContainer {
+    padding: 5px;
+    margin: 10px auto 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(46, 64, 77); /* Adjusted box shadow color */
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #15202b; /* Dark background color for follow request container */
+  }
+  
+  .followRequestContainer p {
+    margin-bottom: 10px;
+  }
+  
+  .report-btn-container {
+    display: flex;
+    justify-content: end;
+    margin-right: 100px;
+  }
+  
+  @media (max-width: 991px) {
+    .display-profile-container {
+      width: 80%;
+    }
+    
+    .display-userdetails-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+  
+    .followRequestContainer {
+      width: 15rem;
+    }
+  }
+  

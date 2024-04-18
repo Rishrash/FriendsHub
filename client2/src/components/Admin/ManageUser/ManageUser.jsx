@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./ManageUser.css";
 import AdminService from "../AdminService.js";
 
 const ManageUser = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./ManageUserdark.css");
+    } else {
+      import("./ManageUser.css");
+    }
+  }, []);
+
   const apiUrl = import.meta.env.VITE_API_HOST;
   const [reportedUsers, setReportedUsers] = useState([]);
   const [buttonClickCount, setButtonClickCount] = useState(0);

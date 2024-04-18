@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
-import "./Login.css";
+import { useEffect } from "react";
 
 const Login = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./Logindark.css");
+    } else {
+      import("./Login.css");
+    }
+  }, []);
+
   const [emailAddress, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();

@@ -1,0 +1,29 @@
+.login input{
+  background-color: #22303c; /* Darker background color */
+  color: white; /* Text color */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Adjusted border color */
+}
+
+.login{
+  box-shadow: 0 0 20px rgb(46, 64, 77); /* Adjusted shadow color */
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Additional styles for dark mode */
+body {
+  background-color: #22303c; /* Dark background color for the body */
+  color: white; /* Default text color */
+}
+
+form.login {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #15202b;;
+    border-radius: 4px;
+  }

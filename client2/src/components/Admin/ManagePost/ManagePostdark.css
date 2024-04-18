@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #22303c; /* Dark background color */
+    color: white; /* Light text color */
+  }
+  
+  .card {
+    width: 400px;
+    background-color: #15202b; /* Darker card background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(46, 64, 77); /* Adjusted box shadow */
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Darker border color */
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+  }
+  
+  .user-info {
+    flex-grow: 1;
+  }
+  
+  .user-info h4 {
+    cursor: pointer;
+    margin: 0;
+    font-size: 16px;
+    transition: font-weight 0.3s ease;
+  }
+  
+  .user-info h4:hover {
+    font-weight: bold;
+  }
+  
+  .post-content {
+    padding: 16px;
+  }
+  
+  .user-info p {
+    font-size: 14px;
+  }
+  
+  .post-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 16px;
+    transition: transform 1s ease;
+  }
+  
+  .post-image:hover {
+    transform: scale(1.02);
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Darker border color */
+  }
+  
+  .action-btn {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-btn:hover {
+    background-color: #3a3a3a; /* Darker hover background color */
+  }
+  
+  .action-btn i {
+    margin-right: 8px;
+  }
+  
+  .reports-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .report {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 5px;
+    margin: 5px;
+    width: 97%;
+    background-color: #15202b; /* Darker background color */
+  }
+  
+  .report p {
+    margin: 5px 0;
+  }
+  
+  .reportComment {
+    margin-left: 5px;
+    padding: 10px;
+    background-color: #15202b; /* Darker background color */
+    color: white; /* Light text color */
+    height: 100px;
+    width: 100%;
+  }
+  
+  .manage-post-heading {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  

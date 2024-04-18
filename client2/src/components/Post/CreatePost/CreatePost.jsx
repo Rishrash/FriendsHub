@@ -1,8 +1,17 @@
-import React, { useState } from "react";
-import "./CreatePost.css";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const CreatePost = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./CreatePostdark.css");
+    } else {
+      import("./CreatePost.css");
+    }
+  }, []);
+
   const apiUrl = import.meta.env.VITE_API_HOST;
   const [textDescription, setTextDescription] = useState("");
   const [visibility, setVisibility] = useState("public");

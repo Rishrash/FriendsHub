@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./DisplayFriendRequest.css";
 
 const DisplayFriendRequest = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./DisplayFriendRequestdark.css");
+    } else {
+      import("./DisplayFriendRequest.css");
+    }
+  }, []);
+
   const apiUrl = import.meta.env.VITE_API_HOST;
   const { userId } = useParams();
   const [userProfiles, setUserProfiles] = useState([]);

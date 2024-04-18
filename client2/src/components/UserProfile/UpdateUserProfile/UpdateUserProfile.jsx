@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./UpdateUserProfile.css";
 import axios from "axios";
 
 export default function UpdateUserProfile() {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./UpdateUserProfiledark.css");
+    } else {
+      import("./UpdateUserProfile.css");
+    }
+  }, []);
+
   const apiUrl = import.meta.env.VITE_API_HOST;
   const [formData, setFormData] = useState({
     nickName: "",

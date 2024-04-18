@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./PostDetail.css";
 
 const PostDetail = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      import("./PostDetaildark.css");
+    } else {
+      import("./PostDetail.css");
+    }
+  }, []);
+
   const apiUrl = import.meta.env.VITE_API_HOST;
   const { postId } = useParams();
   const [post, setPost] = useState(null);

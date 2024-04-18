@@ -1,0 +1,110 @@
+.dropzone {
+    border: 2px dashed rgba(255, 255, 255, 0.3); /* Adjusted border color for dark theme */
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 80%;
+    background-color: #15202b; /* Dark background color for dropzone */
+    color: white /* Light text color for dropzone */
+  }
+  
+  .drop-zone-text {
+    cursor: pointer;
+  }
+  
+  .selected-image {
+    height: 150px;
+    width: auto;
+  }
+  
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    color: white
+  }
+  
+  .create-post-form textarea {
+    width: 80%;
+    background-color: #15202b; /* Dark background color for textarea */
+    color: #fff; /* Light text color for textarea */
+  }
+  
+  .create-post-form select,
+  .create-post-form textarea {
+    background-color: #15202b; /* Dark background color for select */
+    color: #fff; /* Light text color for select */
+  }
+  
+  .post-container {
+    margin: 10px auto;
+    margin-top: 200px;
+    height: 70vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(46, 64, 77); /* Adjusted shadow color */
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .create-post-subcontainer {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background-color: #15202b; /* Dark background color for subcontainer */
+    overflow: hidden;
+  }
+  
+  .error-message {
+    color: #8899a6;
+    font-weight: bold;
+  }
+  
+  .create-post-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #15202b;
+    color: white;
+    font-weight: bold;
+    height: 4rem;
+    width: 4rem;
+    font-size: 2rem;
+    position: fixed;
+    bottom: 34px;
+    right: 34px;
+    z-index: 99;
+    transition: transform 0.5s ease;
+  }
+  
+  .rotate-icon {
+    transform: rotate(45deg);
+    background-color: #15202b;
+  }
+  
+  .rotate-icon:hover {
+    background-color: #8899a6;
+  }
+  
+  .cross-icon {
+    color: #8899a6;
+    font-weight: bold;
+    transition: transform 0.5s ease;
+  }
+  
+  .cross-icon:hover {
+    transform: scale(1.1);
+  }
+  

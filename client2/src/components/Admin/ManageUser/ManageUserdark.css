@@ -1,0 +1,82 @@
+.reported-users-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 100px;
+  }
+  
+  .user-card {
+    background-color: #15202b;; /* Darker card background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(46, 64, 77); /* Adjusted box shadow */
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 300px;
+  }
+  
+  .profile-picture {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+  }
+  
+  .user-details {
+    margin-top: 10px;
+    color: white; /* Light text color */
+  }
+  
+  .reports-list {
+    margin-top: 10px;
+  }
+  
+  .report {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Darker border color */
+    display: flex;
+    padding: 10px 0;
+  }
+  
+  .reporter-picture {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .report-details p {
+    margin: 0;
+    color: white; /* Light text color */
+  }
+  
+  .manage-user-heading {
+    text-align: center;
+    margin-bottom: 50px;
+    color: white; /* Light text color */
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .action-btn button {
+    width: 150px;
+  }
+
+  body{
+    background-color: #22303c;
+  }
+  
+  @media (max-width: 768px) {
+    .user-card {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .user-card {
+      width: calc(100% - 20px);
+    }
+  }
+  

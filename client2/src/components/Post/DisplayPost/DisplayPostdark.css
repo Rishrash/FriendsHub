@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #22303c; /* Dark background color */
+    color: #ffffff; /* Light text color */
+  }
+  
+  .card {
+    width: 400px;
+    background-color: #15202b; /* Dark card background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(46, 64, 77); /* Adjusted box shadow color */
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Adjusted border color */
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+  }
+  
+  .user-info {
+    flex-grow: 1;
+  }
+  
+  .user-info h4 {
+    cursor: pointer;
+    margin: 0;
+    font-size: 16px;
+    transition: font-weight 0.3s ease;
+    color: #ffffff; /* Light text color */
+  }
+  
+  .user-info h4:hover {
+    font-weight: bold;
+  }
+  
+  .user-info p {
+    font-size: 14px;
+    color: #cccccc; /* Light text color for additional information */
+  }
+  
+  .post-content {
+    padding: 16px;
+  }
+  
+  .post-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 16px;
+    transition: transform 1s ease;
+  }
+  
+  .post-image:hover {
+    transform: scale(1.02);
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);/* Adjusted border color */
+  }
+  
+  .action-btn {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+  }
+  
+  .action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Adjusted background color on hover */
+  }
+  
+  .action-btn i {
+    margin-right: 8px;
+  }
+  
