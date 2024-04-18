@@ -133,7 +133,12 @@ const PostDetail = () => {
                 className="btn"
                 onClick={() => handleReportClick(userId, post._id)}
               >
+<<<<<<< HEAD
                 <i class="fa-solid fa-circle-exclamation"></i> Report
+=======
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Report
+>>>>>>> parent of 1375216 (Merge branch 'main' of https://github.com/Rishrash/FriendsHub)
               </button>
             </div>
           </div>

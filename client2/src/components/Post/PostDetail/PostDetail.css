@@ -1,4 +1,4 @@
-.post-detail {
+.post-detail{
   display: flex;
   flex-direction: column;
   margin-bottom: 100px;
@@ -58,8 +58,10 @@
 
 .post-detail .comments {
   margin-top: 20px;
-
+ 
   border-radius: 5px;
+
+
 }
 
 .post-detail .comment {
@@ -70,32 +72,34 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.post-detail .comment .commentBy {
+.post-detail .comment .commentBy{
   font-size: 14px;
 }
-.post-comment {
+.post-comment{
   display: flex;
 }
 
-.post-comment {
+.post-comment{
   display: flex;
+  
 }
 
-.post-comment input {
+.post-comment input{
   margin-left: 10px;
   background-color: #f8f9fa;
   color: black;
 }
 
-.post-like-report {
+ .post-like-report{
   display: flex;
   justify-content: space-around;
 }
 
-.like-comment-count {
+.like-comment-count{
   display: flex;
   justify-content: space-between;
   padding: 0px 15px;
   margin-bottom: 20px;
   border-bottom: 0.8px solid rgb(58, 57, 57);
+  g
 }

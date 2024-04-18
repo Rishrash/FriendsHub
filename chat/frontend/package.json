@@ -10,18 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^5.15.15",
-    "@mui/material": "^5.15.15",
     "chat-app-yt": "file:..",
-    "peerjs": "^1.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.3",
-    "simple-peer": "^9.11.1",
     "socket.io-client": "^4.7.4",
     "zustand": "^4.5.0"
   },
@@ -37,7 +31,6 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
-    "vite": "^5.0.8",
-    "vite-plugin-polyfill": "^0.0.1"
+    "vite": "^5.0.8"
   }
 }
